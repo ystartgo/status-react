@@ -13,11 +13,15 @@
             [status-im.native-module.core :as status]
             [status-im.utils.fx :as fx]
             [status-im.hardwallet.common :as hardwallet.common]
+            [status-im.hardwallet.sign :as hardwallet.sign]
+            [status-im.signing.keycard :as signing.keycard]
             [status-im.utils.hex :as utils.hex]
             [status-im.utils.money :as money]
             [status-im.utils.security :as security]
             [status-im.utils.types :as types]
-            [status-im.utils.utils :as utils]))
+            [status-im.utils.utils :as utils]
+            [taoensso.timbre :as log]
+            [re-frame.core :as re-frame.core]))
 
 (re-frame/reg-fx
  :signing/send-transaction-fx
@@ -215,7 +219,8 @@
   [cofx chat-id value contract transaction-hash signature]
   {::json-rpc/call [{:method (json-rpc/call-ext-method (waku/enabled? cofx) "sendTransaction")
                      :params [chat-id value contract transaction-hash
-                              (:result (types/json->clj signature))]
+                              (or (:result (types/json->clj signature))
+                                  (ethereum/normalized-hex signature))]
                      :on-success
                      #(re-frame/dispatch [:transport/message-sent % 1])}]})
 
@@ -239,25 +244,67 @@
               #(when on-result
                  {:dispatch (conj on-result result)}))))
 
+(fx/defn sign-hashed-message
+  {:events [::sign-message]}
+  [cofx params result]
+  (let [{:keys [result error]} (types/json->clj result)]
+    (hardwallet.sign/sign-message
+     cofx
+     {:hash       (ethereum/naked-address result)
+      :on-success #(re-frame/dispatch [::on-sign-message-success params %])})))
+
+(fx/defn on-sign-message-success
+  {:events [::on-sign-message-success]}
+  [{:keys [db] :as cofx} {:keys [tx-hash message-id chat-id value contract]} signature]
+  (fx/merge
+   cofx
+   {:dispatch
+    (if message-id
+      [::send-accept-transaction-message message-id tx-hash signature]
+      [::send-transaction-message chat-id value contract tx-hash signature])
+    :db (-> db
+            (assoc-in [:hardwallet :pin :sign] [])
+            (assoc-in [:hardwallet :pin :status] nil))}
+   (hardwallet.common/clear-on-card-connected)
+   (hardwallet.common/get-application-info (hardwallet.common/get-pairing db) nil)
+   (hardwallet.common/hide-connection-sheet)))
+
 (fx/defn command-transaction-result
   [{:keys [db] :as cofx} transaction-hash hashed-password
    {:keys [message-id chat-id from] :as tx-obj}]
-  (let [{:keys [on-result symbol amount contract value]} (get db :signing/tx)]
+  (let [{:keys [on-result symbol amount contract value]} (get db :signing/tx)
+        data (str (get-in db [:multiaccount :public-key])
+                  (subs transaction-hash 2))]
+    (log/debug "command-transaction-result"
+               "chat-id" chat-id)
     (fx/merge
      cofx
-     {:db (dissoc db :signing/tx :signing/in-progress? :signing/sign)
-      :signing.fx/sign-message
-      {:params {:data (str (get-in db [:multiaccount :public-key])
-                           (subs transaction-hash 2))
-                :password hashed-password
-                :account from}
-       :on-completed
-       #(re-frame/dispatch
-         (if message-id
-           [::send-accept-transaction-message message-id transaction-hash %]
-           [::send-transaction-message
-            chat-id value contract transaction-hash %]))}
-      :signing/show-transaction-result nil}
+     {:db (dissoc db :signing/tx :signing/in-progress? :signing/sign)}
+     (if (hardwallet.common/keycard-multiaccount? db)
+       (signing.keycard/hash-message
+        {:data data
+         :on-completed
+         (fn [hash]
+           (re-frame.core/dispatch
+            [::sign-message
+             {:tx-hash transaction-hash
+              :message-id message-id
+              :chat-id chat-id
+              :value value
+              :contract contract}
+             hash]))})
+       (fn [_]
+         {:signing.fx/sign-message
+          {:params {:data     data
+                    :password hashed-password
+                    :account  from}
+           :on-completed
+           #(re-frame/dispatch
+             (if message-id
+               [::send-accept-transaction-message message-id transaction-hash %]
+               [::send-transaction-message
+                chat-id value contract transaction-hash %]))}}
+         :signing/show-transaction-result nil))
      (prepare-unconfirmed-transaction transaction-hash tx-obj symbol amount)
      (check-queue)
      #(when on-result
@@ -293,6 +340,7 @@
   [cofx response tx-obj hashed-password]
   (let [cofx-in-progress-false (assoc-in cofx [:db :signing/sign :in-progress?] false)
         {:keys [result error]} (types/json->clj response)]
+    (log/debug "transaction-completed" error tx-obj)
     (if error
       (transaction-error cofx-in-progress-false error)
       (if (:command? tx-obj)
@@ -317,13 +365,14 @@
 (defn normalize-tx-obj [db tx]
   (update-in tx [:tx-obj :from] #(eip55/address->checksum (or % (ethereum/default-address db)))))
 
-(fx/defn sign [{:keys [db] :as cofx} tx]
+(fx/defn sign
   "Signing transaction or message, shows signing sheet
    tx
    {:tx-obj - transaction object to send https://github.com/ethereum/wiki/wiki/JavaScript-API#parameters-25
     :message {:address  :data  :typed? } - message data to sign
     :on-result - re-frame event vector
     :on-error - re-frame event vector}"
+  [{:keys [db] :as cofx} tx]
   (fx/merge cofx
             {:db (update db :signing/queue conj (normalize-tx-obj db tx))}
             (check-queue)))
