@@ -14,8 +14,10 @@
 
 (defn numpad-button [n step enabled? small-screen?]
   [react/touchable-highlight
-   {:on-press #(when enabled?
-                 (re-frame/dispatch [:hardwallet.ui/pin-numpad-button-pressed n step]))}
+   {:on-press            #(when enabled?
+                            (re-frame/dispatch
+                             [:hardwallet.ui/pin-numpad-button-pressed n step]))
+    :accessibility-label (str "numpad-button-" n)}
    [react/view (styles/numpad-button small-screen?)
     [react/text {:style styles/numpad-button-text}
      n]]])
@@ -35,8 +37,9 @@
     [react/view (styles/numpad-empty-button small-screen?)]
     [numpad-button 0 step enabled? small-screen?]
     [react/touchable-highlight
-     {:on-press #(when enabled?
-                   (re-frame/dispatch [:hardwallet.ui/pin-numpad-delete-button-pressed step]))}
+     {:on-press            #(when enabled?
+                              (re-frame/dispatch [:hardwallet.ui/pin-numpad-delete-button-pressed step]))
+      :accessibility-label "numpad-button-delete"}
      [react/view (styles/numpad-delete-button small-screen?)
       [vector-icons/icon :main-icons/backspace {:color colors/blue}]]]]])
 
