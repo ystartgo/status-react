@@ -1,10 +1,8 @@
 (ns status-im.subs
   (:require [cljs.spec.alpha :as spec]
             [clojure.string :as string]
-            [taoensso.timbre :as log]
             [re-frame.core :as re-frame]
             [status-im.browser.core :as browser]
-            [status-im.chat.constants :as chat.constants]
             [status-im.chat.db :as chat.db]
             [status-im.chat.models :as chat.models]
             [status-im.chat.models.message-list :as models.message-list]
@@ -22,14 +20,10 @@
             [status-im.multiaccounts.db :as multiaccounts.db]
             [status-im.multiaccounts.recover.core :as recover]
             [status-im.pairing.core :as pairing]
-            [status-im.tribute-to-talk.core :as tribute-to-talk]
             [status-im.tribute-to-talk.db :as tribute-to-talk.db]
-            [status-im.tribute-to-talk.whitelist :as whitelist]
             [status-im.ui.components.tabbar.styles :as tabs.styles]
             [status-im.ui.components.colors :as colors]
-            [status-im.ui.components.toolbar.styles :as toolbar.styles]
             [status-im.ui.screens.add-new.new-public-chat.db :as db]
-            [status-im.ui.screens.chat.stickers.styles :as stickers.styles]
             [status-im.ui.screens.mobile-network-settings.utils
              :as
              mobile-network-utils]
@@ -37,13 +31,10 @@
             [status-im.utils.build :as build]
             [status-im.utils.config :as config]
             [status-im.utils.datetime :as datetime]
-            [status-im.utils.hex :as utils.hex]
-            [status-im.utils.identicon :as identicon]
             [status-im.utils.money :as money]
             [status-im.utils.platform :as platform]
             [status-im.utils.security :as security]
             [status-im.utils.universal-links.core :as links]
-            [status-im.wallet.core :as wallet]
             [status-im.wallet.db :as wallet.db]
             [status-im.signing.gas :as signing.gas]
             [status-im.utils.gfycat.core :as gfycat]
@@ -210,9 +201,7 @@
  :intro-wizard
  :<- [:intro-wizard-state]
  :<- [:dimensions/window]
- (fn [[wizard-state
-       {:keys [width height] :as dimensions}
-       view-id]]
+ (fn [[wizard-state {:keys [width height]}]]
    (assoc wizard-state
           :view-height height :view-width width)))
 
@@ -279,13 +268,6 @@
  :<- [:multiaccounts/multiaccounts]
  (fn [[intro-wizard multiaccounts]]
    (recover/existing-account? (:root-key intro-wizard) multiaccounts)))
-
-;;FIXME not needed until desktop enabled
-#_(re-frame/reg-sub
-   :settings/logging-enabled
-   :<- [:desktop/desktop]
-   (fn [desktop _]
-     (get desktop :logging-enabled false)))
 
 (re-frame/reg-sub
  :current-network

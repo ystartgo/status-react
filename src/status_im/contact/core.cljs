@@ -7,24 +7,21 @@
    [status-im.multiaccounts.model :as multiaccounts.model]
    [status-im.transport.filters.core :as transport.filters]
    [status-im.contact.db :as contact.db]
-   [status-im.ethereum.core :as ethereum]
    [status-im.ethereum.json-rpc :as json-rpc]
    [status-im.data-store.contacts :as contacts-store]
    [status-im.mailserver.core :as mailserver]
-   [status-im.transport.message.protocol :as protocol]
    [status-im.tribute-to-talk.db :as tribute-to-talk]
    [status-im.tribute-to-talk.whitelist :as whitelist]
    [status-im.ui.screens.navigation :as navigation]
-   [status-im.utils.config :as config]
-   [status-im.utils.fx :as fx]
-   [status-im.utils.datetime :as time]))
+   [status-im.utils.fx :as fx]))
 
 (fx/defn load-contacts
   {:events [::contacts-loaded]}
   [{:keys [db] :as cofx} all-contacts]
-  (let [contacts-list (map #(vector (:public-key %) (if (empty? (:address %))
-                                                      (dissoc % :address)
-                                                      %))
+  (let [contacts-list (map #(vector (:public-key %)
+                                    (if (empty? (:address %))
+                                      (dissoc % :address)
+                                      %))
                            all-contacts)
         contacts (into {} contacts-list)
         tr-to-talk-enabled? (-> db tribute-to-talk/get-settings tribute-to-talk/enabled?)]
@@ -170,7 +167,6 @@
                          [public-key [:contacts/contacts public-key :alias]]]}))
 
 (fx/defn name-verified
-  {:events [:contacts/ens-name-verified]}
   [{:keys [db now] :as cofx} public-key ens-name]
   (fx/merge cofx
             {:db (update-in db [:contacts/contacts public-key]
@@ -179,5 +175,4 @@
                              :last-ens-clock-value now
                              :ens-verified-at now
                              :ens-verified    true})}
-
             (upsert-contact {:public-key public-key})))

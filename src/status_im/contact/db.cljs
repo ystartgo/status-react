@@ -1,7 +1,6 @@
 (ns status-im.contact.db
   (:require [cljs.spec.alpha :as spec]
             [status-im.ethereum.core :as ethereum]
-            [status-im.tribute-to-talk.db :as tribute-to-talk.db]
             [status-im.utils.gfycat.core :as gfycat]
             [status-im.utils.identicon :as identicon]
             status-im.utils.db))
@@ -145,17 +144,6 @@
   ([db public-key]
    (pending? (get-in db [:contacts/contacts public-key]))))
 
-(defn legacy-pending?
-  "Would the :pending? field be true? for contacts sync payload sent to devices
-  running 0.11.0 or older?"
-  ([{:keys [system-tags] :as contact}]
-   (let [request-received? (contains? system-tags :contact/request-received)
-         added? (added? contact)]
-     (and request-received?
-          (not added?))))
-  ([db public-key]
-   (pending? (get-in db [:contacts/contacts public-key]))))
-
 (defn active?
   "Checks that the user is added to the contact and not blocked"
   ([contact]
@@ -164,18 +152,25 @@
   ([db public-key]
    (active? (get-in db [:contacts/contacts public-key]))))
 
+;; TODO not useful without TTT
+#_(defn enrich-ttt-contact
+    [{:keys [system-tags tribute-to-talk] :as contact}]
+    (let [tribute (:snt-amount tribute-to-talk)
+          tribute-status (tribute-to-talk.db/tribute-status contact)
+          tribute-label (tribute-to-talk.db/status-label tribute-status tribute)]
+      (-> contact
+          (assoc-in [:tribute-to-talk :tribute-status] tribute-status)
+          (assoc-in [:tribute-to-talk :tribute-label] tribute-label)
+          (assoc :pending? (pending? contact)
+                 :blocked? (blocked? contact)
+                 :active? (active? contact)
+                 :added? (contains? system-tags :contact/added)))))
+
 (defn enrich-contact
-  [{:keys [system-tags tribute-to-talk] :as contact}]
-  (let [tribute (:snt-amount tribute-to-talk)
-        tribute-status (tribute-to-talk.db/tribute-status contact)
-        tribute-label (tribute-to-talk.db/status-label tribute-status tribute)]
-    (-> contact
-        (assoc-in [:tribute-to-talk :tribute-status] tribute-status)
-        (assoc-in [:tribute-to-talk :tribute-label] tribute-label)
-        (assoc :pending? (pending? contact)
-               :blocked? (blocked? contact)
-               :active? (active? contact)
-               :added? (contains? system-tags :contact/added)))))
+  [contact]
+  ;; this needed for performance, we don't need this field in subscriptions
+  ;; so we shouldn't react on it
+  (dissoc contact :ens-verified-at))
 
 (defn enrich-contacts
   [contacts]
