@@ -22,8 +22,7 @@
                  [hickory "0.7.1"]
                  [cljs-bean "1.3.0"]
                  [binaryage/oops "0.7.0"]
-                 [mvxcvi/alphabase "1.0.0"]
-                 [re-frisk-remote "0.5.10"]]
+                 [mvxcvi/alphabase "1.0.0"]]
   :plugins [[rasom/lein-githooks "0.1.5"]
             [lein-cljsbuild "1.1.7"]
             [lein-re-frisk "0.5.8"]
@@ -137,7 +136,8 @@
                                                                                            :output-to "status-modules/cljs/network-raw.js"}}}
                                       :warning-handlers [status-im.utils.build/warning-handler]}
                                      :android
-                                     {:source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
+                                     {:dependencies [[re-frisk-remote "0.5.5"]]
+                                      :source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
                                       :compiler         {:main               "env.android.main"
                                                          :output-dir         "target/android-prod"
                                                          :static-fns         true
