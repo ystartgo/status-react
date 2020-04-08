@@ -23,7 +23,7 @@
                  [cljs-bean "1.3.0"]
                  [binaryage/oops "0.7.0"]
                  [mvxcvi/alphabase "1.0.0"]
-                 [re-frisk-remote "0.5.5"]]
+                 [re-frisk-remote "0.5.10"]]
   :plugins [[rasom/lein-githooks "0.1.5"]
             [lein-cljsbuild "1.1.7"]
             [lein-re-frisk "0.5.8"]

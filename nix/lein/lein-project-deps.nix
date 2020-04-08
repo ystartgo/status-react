@@ -380,6 +380,21 @@ in {
       sha256 = "061cjh2a6qpkib5v5mdrsbwhvcbqvh1igvp3b7jhcfj05pgplm1x";
     };
   };
+  "https://repo.clojars.org/com/taoensso/encore/2.117.0/encore-2.117.0" =
+  {
+    host = repositories.clojars;
+    path =
+      "com/taoensso/encore/2.117.0/encore-2.117.0";
+    type = "jar";
+    pom = {
+      sha1 = "280014a9558bb2eeabf5d1e2ba47c73faeeb5c82";
+      sha256 = "111a5pwralfwhdsw4r287ybhv611psn2qgsdl2xmcrr11k8q31g7";
+    };
+    jar = {
+      sha1 = "30c096c80ac45227d869087a80755500fca98346";
+      sha256 = "0wyjhm435hmznf9xnn392z2rg8xj9d5kqya27fdagdd8cpzap84c";
+    };
+  };
   "https://repo.clojars.org/com/taoensso/encore/2.79.1/encore-2.79.1" =
   {
     host = repositories.clojars;
@@ -453,6 +468,21 @@ in {
     jar = {
       sha1 = "697acd708293e43d320f3048cdc0dfb46ddfecb1";
       sha256 = "02zlz3axsgh4x55hjz6gyabf9sxg28hywjs7q2n3cn6r98wivaz9";
+    };
+  };
+  "https://repo.clojars.org/com/taoensso/timbre/4.10.0/timbre-4.10.0" =
+  {
+    host = repositories.clojars;
+    path =
+      "com/taoensso/timbre/4.10.0/timbre-4.10.0";
+    type = "jar";
+    pom = {
+      sha1 = "79b9f08eb71f68de4a9e01e8899cd80313a6a2d2";
+      sha256 = "1a7xr3w667868wgdxfr5655i680ip47dmlw2khr87f70hc6d64nv";
+    };
+    jar = {
+      sha1 = "daf6b8826cb16aed7fb3e0dd7a5c5266d2a53854";
+      sha256 = "1rza24rhkzjmik5rwfzqzywp9yvcwilj16him9n7h7p751y6klry";
     };
   };
   "https://repo.clojars.org/com/taoensso/timbre/4.7.4/timbre-4.7.4" =
@@ -845,19 +875,19 @@ in {
       sha256 = "0qb4dmyk10hcc88sl14jxq2s0yifrc0x71fxy76w2iqlql03ri6w";
     };
   };
-  "https://repo.clojars.org/re-frisk-remote/re-frisk-remote/0.5.5/re-frisk-remote-0.5.5" =
+  "https://repo.clojars.org/re-frisk-remote/re-frisk-remote/0.5.10/re-frisk-remote-0.5.10" =
   {
     host = repositories.clojars;
     path =
-      "re-frisk-remote/re-frisk-remote/0.5.5/re-frisk-remote-0.5.5";
+      "re-frisk-remote/re-frisk-remote/0.5.10/re-frisk-remote-0.5.10";
     type = "jar";
     pom = {
-      sha1 = "db7409cd9d97e84e76e4fd8244e445dbb273efca";
-      sha256 = "0g41mw4ca19mlhxrihx1c4cqybxr2wvchkaw8xqjc4dfdliff6pb";
+      sha1 = "830c7f2092e2eeca861342f1c72637ceaa10ced8";
+      sha256 = "1lnd40yl1j6vgihd4vfyawhi23y20jvf7xpwdm53f9f3sakwm791";
     };
     jar = {
-      sha1 = "9cd6ac994d2ac3a20adf391b8f1ffc95fca754f9";
-      sha256 = "1cr8acb8dclgdf7mcyapvcxpl2p9lcmnhb3za8swrhvzk1lxn4wn";
+      sha1 = "a57a6f074fedf9e9ef3be7bb1271e818be5eb835";
+      sha256 = "0zyl23lmfy5qkwi8i17vx0dkb3dn61sy444lc8m7xfl5wxvhxjhv";
     };
   };
   "https://repo.clojars.org/re-frisk-shell/re-frisk-shell/0.5.2/re-frisk-shell-0.5.2" =
@@ -903,6 +933,21 @@ in {
     jar = {
       sha1 = "a7fe2c5fe6939bb78599c4c46493c7a62d7c7d48";
       sha256 = "1bxrvx0v5fhn7m1qhd3b5s2rq5v34sgwpp0ad7c7ijmfdjsrrafr";
+    };
+  };
+  "https://repo.clojars.org/re-frisk/sente/1.15.0/sente-1.15.0" =
+  {
+    host = repositories.clojars;
+    path =
+      "re-frisk/sente/1.15.0/sente-1.15.0";
+    type = "jar";
+    pom = {
+      sha1 = "4d11dff4814d1e90a548de53b373928123f74247";
+      sha256 = "1d2kvcf43mi9cp9ribrapgdvwmpwkq492nnsxkhdgfxyxh8cq270";
+    };
+    jar = {
+      sha1 = "d54aa873a848f624a282c2c2f7df947c976a77b5";
+      sha256 = "0yhsqpi3d8x11pl1aq8z23fdyjspvq07dsyvrlkpbyx7rm64i21h";
     };
   };
   "https://repo.clojars.org/reagent/reagent/0.6.0/reagent-0.6.0" =
@@ -3050,6 +3095,21 @@ in {
       sha256 = "1i7b87in8pw1can91lzxhjw23m7hn4ak5lwxcc4wvg4w7d6iqlpy";
     };
   };
+  "https://repo1.maven.org/maven2/org/clojure/core.async/0.5.527/core.async-0.5.527" =
+  {
+    host = repositories.maven;
+    path =
+      "org/clojure/core.async/0.5.527/core.async-0.5.527";
+    type = "jar";
+    pom = {
+      sha1 = "547d3367f0ceb61b99b293c7ee98cc34d25a4966";
+      sha256 = "1dzr4l93yhh1x63r610rc50c1kavh6bvfwm0mrgfyb51mvbzdva8";
+    };
+    jar = {
+      sha1 = "a345b640e4ae075b49af0af5063db598d518b536";
+      sha256 = "0mjx3wdzg3i4b1yny4b58jv2034idz5glb87v1ryasr4mx4rmqzi";
+    };
+  };
   "https://repo1.maven.org/maven2/org/clojure/core.cache/0.6.5/core.cache-0.6.5" =
   {
     host = repositories.maven;
@@ -3413,6 +3473,21 @@ in {
       sha256 = "1s935mgzxfvaxyj4phf4lzqdp0b5bkiarxnb6ip1rk8anrdcapyd";
     };
   };
+  "https://repo1.maven.org/maven2/org/clojure/tools.analyzer.jvm/0.7.2/tools.analyzer.jvm-0.7.2" =
+  {
+    host = repositories.maven;
+    path =
+      "org/clojure/tools.analyzer.jvm/0.7.2/tools.analyzer.jvm-0.7.2";
+    type = "jar";
+    pom = {
+      sha1 = "81d8aeccf8c8f84536f0be885eb6a9c3d0cbc59a";
+      sha256 = "099d6hnbjkbwv423sa4m4yxihj6xx7wavdzh3q7bp5k3kqqjs3i0";
+    };
+    jar = {
+      sha1 = "d3a7ebda210a9e8422c862d9d95e54654ea08094";
+      sha256 = "0k499m7kqhp9s307366hiw7s8l981sh611gq6wnrai0dvwr0smh4";
+    };
+  };
   "https://repo1.maven.org/maven2/org/clojure/tools.analyzer/0.6.9/tools.analyzer-0.6.9" =
   {
     host = repositories.maven;
@@ -3696,6 +3771,21 @@ in {
     jar = {
       sha1 = "78c597e8e9922dbdbdabb192f7a49c6ee74fa480";
       sha256 = "0fjbk7d17chialnhq9n6ylhi1ah9hf04vxh6m1qlwxhdj6v9v00c";
+    };
+  };
+  "https://repo1.maven.org/maven2/org/clojure/tools.reader/1.3.2/tools.reader-1.3.2" =
+  {
+    host = repositories.maven;
+    path =
+      "org/clojure/tools.reader/1.3.2/tools.reader-1.3.2";
+    type = "jar";
+    pom = {
+      sha1 = "9843b076ab7431e43d252aec6b211ceac7f36fc0";
+      sha256 = "1n6iv7qa4asfxackh34qx743dcfmm15x5k5fgl212llw5v7c5kdi";
+    };
+    jar = {
+      sha1 = "b4dce2f71625d60fe1fd6a95816017811dd73522";
+      sha256 = "1039hyg9naspww8i97ks31gbaz7fw8q1jizm4sq3yx83g5nm7dqk";
     };
   };
   "https://repo1.maven.org/maven2/org/codehaus/codehaus-parent/4/codehaus-parent-4" =
