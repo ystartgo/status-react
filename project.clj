@@ -143,7 +143,7 @@
                                                          :static-fns         true
                                                          :fn-invoke-direct   true
                                                          :optimize-constants true
-                                                         :optimizations      :advanced
+                                                         :optimizations      :none
                                                          :stable-names       true
                                                          :pseudo-names       false
                                                          :pretty-print       false
