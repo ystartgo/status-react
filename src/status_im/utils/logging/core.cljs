@@ -5,7 +5,6 @@
             [status-im.utils.types :as types]
             [status-im.utils.handlers :as handlers]
             [status-im.utils.email :as mail]
-            [taoensso.timbre :as log]
             [status-im.utils.config :as config]
             [status-im.i18n :as i18n]
             [status-im.utils.platform :as platform]
@@ -22,13 +21,13 @@
     (swap! logs-queue pop)))
 
 (defn init-logs []
-  (log/set-level! config/log-level)
-  (log/debug)
-  (log/merge-config!
-   {:output-fn (fn [& data]
-                 (let [res (apply log/default-output-fn data)]
-                   (add-log-entry res)
-                   res))}))
+  ;(log/set-level! config/log-level)
+  ;(log/debug)
+  #_(log/merge-config!
+     {:output-fn (fn [& data]
+                   (let [res (apply log/default-output-fn data)]
+                     (add-log-entry res)
+                     res))}))
 
 (defn get-js-logs []
   (clojure.string/join "\n" @logs-queue))
