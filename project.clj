@@ -17,8 +17,8 @@
                  [reagent "0.7.0" :exclusions [cljsjs/react cljsjs/react-dom cljsjs/react-dom-server cljsjs/create-react-class]]
                  [status-im/re-frame "0.10.5"]
                  [com.andrewmcveigh/cljs-time "0.5.2"]
-                 [status-im/timbre "4.10.0-2-status"]
                  [com.taoensso/encore "2.94.0"]
+                 [com.taoensso/timbre "4.7.4"]
                  [hickory "0.7.1"]
                  [cljs-bean "1.3.0"]
                  [binaryage/oops "0.7.0"]
@@ -137,21 +137,12 @@
                                                                                            :output-to "status-modules/cljs/network-raw.js"}}}
                                       :warning-handlers [status-im.utils.build/warning-handler]}
                                      :android
-                                     {
-                                      :source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
+                                     {:source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
                                       :compiler         {:main               "env.android.main"
                                                          :output-dir         "target/android-prod"
-                                                         :static-fns         true
-                                                         :fn-invoke-direct   true
-                                                         :optimize-constants true
                                                          :optimizations      :none
-                                                         :stable-names       true
-                                                         :pseudo-names       false
-                                                         :pretty-print       false
                                                          :closure-defines    {"goog.DEBUG" false}
                                                          :parallel-build     false
-                                                         :elide-asserts      true
-                                                         :externs            ["externs.js"]
                                                          :language-in        :es-2015
                                                          :language-out       :es-2015
                                                          :modules            {:cljs-base  {:output-to "index.android.js"}

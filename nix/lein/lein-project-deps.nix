@@ -410,21 +410,6 @@ in {
       sha256 = "12f6fw32y4sj8k65qcnds30syklp96h6q179hq3l5dfnxd3yj46j";
     };
   };
-  "https://repo.clojars.org/com/taoensso/encore/2.91.0/encore-2.91.0" =
-  {
-    host = repositories.clojars;
-    path =
-      "com/taoensso/encore/2.91.0/encore-2.91.0";
-    type = "jar";
-    pom = {
-      sha1 = "17b8d661cb1d3f14434af9934e1b5bf35dedf922";
-      sha256 = "17g1sihagxmv33f8fs40dhw5ni3d25iwj7ipivfj4yzldqaifxz6";
-    };
-    jar = {
-      sha1 = "b3763f399395938eb66f0b125f8d9559976bf168";
-      sha256 = "1a051xqn2k4gjnb9lvs6ma3qwdx14vqnq32z7qpqda6h3cyymvq5";
-    };
-  };
   "https://repo.clojars.org/com/taoensso/encore/2.94.0/encore-2.94.0" =
   {
     host = repositories.clojars;
@@ -663,21 +648,6 @@ in {
     jar = {
       sha1 = "80485ee4337502fc5380e95b3b9536623bc1bd2d";
       sha256 = "17yi35nd4qwb16n1llgdcknppc4axr5gngg3v8valpdk8qcf3pmh";
-    };
-  };
-  "https://repo.clojars.org/io/aviso/pretty/0.1.33/pretty-0.1.33" =
-  {
-    host = repositories.clojars;
-    path =
-      "io/aviso/pretty/0.1.33/pretty-0.1.33";
-    type = "jar";
-    pom = {
-      sha1 = "bd20d3111649da92524569882f0f9925740aac3e";
-      sha256 = "034rhbp6cqzbf9c4ql28n72vmqbxvh39ghf1b2axlnfza38w783b";
-    };
-    jar = {
-      sha1 = "2ebf75b7ff2a2260827453e7ea98e012a9eca3e2";
-      sha256 = "06w7hpgccr7qy47cwzpq5h2fw27am1imc9cbpg3bc5bbydz9q4df";
     };
   };
   "https://repo.clojars.org/lein-cljfmt/lein-cljfmt/0.5.7/lein-cljfmt-0.5.7" =
@@ -1173,21 +1143,6 @@ in {
     jar = {
       sha1 = "26ff2f15eaf4ea6518adb1024bdb3f8ebd1945a9";
       sha256 = "1waddf88j3mc1pjipgmdkbs7943f7a2xy3n6b6hznp0fivyyhn38";
-    };
-  };
-  "https://repo.clojars.org/status-im/timbre/4.10.0-2-status/timbre-4.10.0-2-status" =
-  {
-    host = repositories.clojars;
-    path =
-      "status-im/timbre/4.10.0-2-status/timbre-4.10.0-2-status";
-    type = "jar";
-    pom = {
-      sha1 = "a0ada642eec4fc748cc52988754ad5cdfa1865b1";
-      sha256 = "1h7hhxq1kqpm2g0sk811zigi8c66si72l141gh964ly4pldpc940";
-    };
-    jar = {
-      sha1 = "e630bd13a422d7dbedeeb26f17aca0a473a9e5d3";
-      sha256 = "1ipakbl438xkj1qhp6lrmjk25vihk15v86k69qba4ny7i0jhyj21";
     };
   };
   "https://repo.clojars.org/viebel/codox-klipse-theme/0.0.1/codox-klipse-theme-0.0.1" =
