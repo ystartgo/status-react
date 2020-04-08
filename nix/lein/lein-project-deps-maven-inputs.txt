@@ -53,6 +53,7 @@ https://repo.clojars.org/quoin/quoin/0.1.2/quoin-0.1.2
 https://repo.clojars.org/rasom/lein-githooks/0.1.5/lein-githooks-0.1.5
 https://repo.clojars.org/re-com/re-com/2.1.0/re-com-2.1.0
 https://repo.clojars.org/re-frame/re-frame/0.10.1/re-frame-0.10.1
+https://repo.clojars.org/re-frisk-remote/re-frisk-remote/0.5.5/re-frisk-remote-0.5.5
 https://repo.clojars.org/re-frisk-shell/re-frisk-shell/0.5.2/re-frisk-shell-0.5.2
 https://repo.clojars.org/re-frisk-sidecar/re-frisk-sidecar/0.5.7/re-frisk-sidecar-0.5.7
 https://repo.clojars.org/re-frisk/re-frisk/0.5.4/re-frisk-0.5.4

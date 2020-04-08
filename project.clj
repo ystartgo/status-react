@@ -107,7 +107,8 @@
                                                         :output-dir    "target/test"
                                                         :optimizations :none
                                                         :target        :nodejs}}]}}
-             :prod     {:cljsbuild {:builds
+             :prod     {:dependencies [[re-frisk-remote "0.5.5"]]
+                        :cljsbuild {:builds
                                     {:ios
                                      {:source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
                                       :compiler         {:main               "env.ios.main"
@@ -136,7 +137,7 @@
                                                                                            :output-to "status-modules/cljs/network-raw.js"}}}
                                       :warning-handlers [status-im.utils.build/warning-handler]}
                                      :android
-                                     {:dependencies [[re-frisk-remote "0.5.5"]]
+                                     {
                                       :source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
                                       :compiler         {:main               "env.android.main"
                                                          :output-dir         "target/android-prod"

@@ -845,6 +845,21 @@ in {
       sha256 = "0qb4dmyk10hcc88sl14jxq2s0yifrc0x71fxy76w2iqlql03ri6w";
     };
   };
+  "https://repo.clojars.org/re-frisk-remote/re-frisk-remote/0.5.5/re-frisk-remote-0.5.5" =
+  {
+    host = repositories.clojars;
+    path =
+      "re-frisk-remote/re-frisk-remote/0.5.5/re-frisk-remote-0.5.5";
+    type = "jar";
+    pom = {
+      sha1 = "db7409cd9d97e84e76e4fd8244e445dbb273efca";
+      sha256 = "0g41mw4ca19mlhxrihx1c4cqybxr2wvchkaw8xqjc4dfdliff6pb";
+    };
+    jar = {
+      sha1 = "9cd6ac994d2ac3a20adf391b8f1ffc95fca754f9";
+      sha256 = "1cr8acb8dclgdf7mcyapvcxpl2p9lcmnhb3za8swrhvzk1lxn4wn";
+    };
+  };
   "https://repo.clojars.org/re-frisk-shell/re-frisk-shell/0.5.2/re-frisk-shell-0.5.2" =
   {
     host = repositories.clojars;
