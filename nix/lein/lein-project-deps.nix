@@ -410,6 +410,21 @@ in {
       sha256 = "12f6fw32y4sj8k65qcnds30syklp96h6q179hq3l5dfnxd3yj46j";
     };
   };
+  "https://repo.clojars.org/com/taoensso/encore/2.91.0/encore-2.91.0" =
+  {
+    host = repositories.clojars;
+    path =
+      "com/taoensso/encore/2.91.0/encore-2.91.0";
+    type = "jar";
+    pom = {
+      sha1 = "17b8d661cb1d3f14434af9934e1b5bf35dedf922";
+      sha256 = "17g1sihagxmv33f8fs40dhw5ni3d25iwj7ipivfj4yzldqaifxz6";
+    };
+    jar = {
+      sha1 = "b3763f399395938eb66f0b125f8d9559976bf168";
+      sha256 = "1a051xqn2k4gjnb9lvs6ma3qwdx14vqnq32z7qpqda6h3cyymvq5";
+    };
+  };
   "https://repo.clojars.org/com/taoensso/encore/2.94.0/encore-2.94.0" =
   {
     host = repositories.clojars;
@@ -438,6 +453,21 @@ in {
     jar = {
       sha1 = "697acd708293e43d320f3048cdc0dfb46ddfecb1";
       sha256 = "02zlz3axsgh4x55hjz6gyabf9sxg28hywjs7q2n3cn6r98wivaz9";
+    };
+  };
+  "https://repo.clojars.org/com/taoensso/timbre/4.10.0/timbre-4.10.0" =
+  {
+    host = repositories.clojars;
+    path =
+      "com/taoensso/timbre/4.10.0/timbre-4.10.0";
+    type = "jar";
+    pom = {
+      sha1 = "79b9f08eb71f68de4a9e01e8899cd80313a6a2d2";
+      sha256 = "1a7xr3w667868wgdxfr5655i680ip47dmlw2khr87f70hc6d64nv";
+    };
+    jar = {
+      sha1 = "daf6b8826cb16aed7fb3e0dd7a5c5266d2a53854";
+      sha256 = "1rza24rhkzjmik5rwfzqzywp9yvcwilj16him9n7h7p751y6klry";
     };
   };
   "https://repo.clojars.org/com/taoensso/timbre/4.7.4/timbre-4.7.4" =
@@ -648,6 +678,21 @@ in {
     jar = {
       sha1 = "80485ee4337502fc5380e95b3b9536623bc1bd2d";
       sha256 = "17yi35nd4qwb16n1llgdcknppc4axr5gngg3v8valpdk8qcf3pmh";
+    };
+  };
+  "https://repo.clojars.org/io/aviso/pretty/0.1.33/pretty-0.1.33" =
+  {
+    host = repositories.clojars;
+    path =
+      "io/aviso/pretty/0.1.33/pretty-0.1.33";
+    type = "jar";
+    pom = {
+      sha1 = "bd20d3111649da92524569882f0f9925740aac3e";
+      sha256 = "034rhbp6cqzbf9c4ql28n72vmqbxvh39ghf1b2axlnfza38w783b";
+    };
+    jar = {
+      sha1 = "2ebf75b7ff2a2260827453e7ea98e012a9eca3e2";
+      sha256 = "06w7hpgccr7qy47cwzpq5h2fw27am1imc9cbpg3bc5bbydz9q4df";
     };
   };
   "https://repo.clojars.org/lein-cljfmt/lein-cljfmt/0.5.7/lein-cljfmt-0.5.7" =
