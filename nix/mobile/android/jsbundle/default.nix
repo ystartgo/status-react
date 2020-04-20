@@ -61,7 +61,7 @@ in stdenv.mkDerivation {
     '';
   buildPhase = ''
     ln -s ${projectNodePackage}/node_modules
-
+    export SENTE_ELIDE_JS_REQUIRE=true
     # On macOS, lein tries to create $HOME/.lein, which fails with java.lang.Exception: Couldn't create directories: /homeless-shelter/.lein, so we just make it use a temp dir
     tmp=$(mktemp -d)
     HOME=$tmp ${lein-command}
