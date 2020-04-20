@@ -99,7 +99,8 @@
                                                         :output-dir    "target/test"
                                                         :optimizations :none
                                                         :target        :nodejs}}]}}
-             :prod     {:cljsbuild {:builds
+             :prod     {:dependencies [[re-frisk "0.9.0"]]
+                        :cljsbuild {:builds
                                     {:ios
                                      {:source-paths     ["components/src" "react-native/src/cljsjs" "react-native/src/mobile" "src" "env/prod" "prod"]
                                       :compiler         {:main               "env.ios.main"
@@ -110,7 +111,8 @@
                                                          :optimizations      :advanced
                                                          :pseudo-names       false
                                                          :pretty-print       false
-                                                         :closure-defines    {"goog.DEBUG" false}
+                                                         :closure-defines    {"goog.DEBUG" false
+                                                                              "re_frame.trace.trace_enabled_QMARK_" true}
                                                          :parallel-build     false
                                                          :elide-asserts      true
                                                          :externs            ["externs.js"]
@@ -138,7 +140,8 @@
                                                          :stable-names       true
                                                          :pseudo-names       false
                                                          :pretty-print       false
-                                                         :closure-defines    {"goog.DEBUG" false}
+                                                         :closure-defines    {"goog.DEBUG" false
+                                                                              "re_frame.trace.trace_enabled_QMARK_" true}
                                                          :parallel-build     false
                                                          :elide-asserts      true
                                                          :externs            ["externs.js"]
