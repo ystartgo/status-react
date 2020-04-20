@@ -208,5 +208,6 @@
    (fn [insets]
      (reagent/as-element
       [bottom-sheet-view (assoc props
-                                :window-height @(re-frame/subscribe [:dimensions/window-height])
+                           ;;TODO fix that, because this sub is always running
+                                ;:window-height @(re-frame/subscribe [:dimensions/window-height])
                                 :safe-area (js->clj insets :keywordize-keys true))]))])
