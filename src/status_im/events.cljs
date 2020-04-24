@@ -1174,7 +1174,7 @@
 
 (handlers/register-handler-fx
  :hello-world
- (fn [_ _]
+ (fn []
    {:utils/show-popup {:title   "This is a title"
                        :content "General Kenobi!"}}))
 
