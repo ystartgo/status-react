@@ -1171,3 +1171,10 @@
    (let [cur-theme (get-in db [:multiaccount :appearance])]
      (when (or (nil? cur-theme) (zero?  cur-theme))
        {::multiaccounts/switch-theme (if (= :dark theme) 2 1)}))))
+
+(handlers/register-handler-fx
+ :hello-world
+ (fn [_ _]
+   {:utils/show-popup {:title   "This is a title"
+                       :content "General Kenobi!"}}))
+
