@@ -45,16 +45,14 @@
                            :icon  :main-icons/message}
      :count-subscription  :chats/unread-messages-number
      :accessibility-label :home-tab-button}
-    (when-not platform/desktop?
-      {:nav-stack           :browser-stack
-       :content             {:title (i18n/label :t/browser)
-                             :icon  :main-icons/browser}
-       :accessibility-label :dapp-tab-button})
-    (when-not platform/desktop?
-      {:nav-stack           :wallet-stack
-       :content             {:title (i18n/label :t/wallet)
-                             :icon  :main-icons/wallet}
-       :accessibility-label :wallet-tab-button})
+    {:nav-stack           :browser-stack
+     :content             {:title (i18n/label :t/browser)
+                           :icon  :main-icons/browser}
+     :accessibility-label :dapp-tab-button}
+    {:nav-stack           :wallet-stack
+     :content             {:title (i18n/label :t/wallet)
+                           :icon  :main-icons/wallet}
+     :accessibility-label :wallet-tab-button}
     {:nav-stack           :profile-stack
      :content             {:title (i18n/label :t/profile)
                            :icon  :main-icons/user-profile}
@@ -68,29 +66,24 @@
                accessibility-label count-subscription]}]
     (let [count (when count-subscription @(re-frame/subscribe [count-subscription]))]
       [react/view {:style tabs.styles/touchable-container}
-       [react/touchable-without-feedback-gesture
-        {:style               {:height "100%"
-                               :width  "100%"}
-         :on-press            on-press
-         :accessibility-label accessibility-label}
-        [react/view {:style tabs.styles/tab-container}
-         [react/view {:style tabs.styles/icon-container}
-          [vector-icons/icon icon (tabs.styles/icon active?)]
-          (when count
-            (cond
-              (or (pos? count) (pos? (:other count)))
-              [react/view {:style (if (= nav-stack :chat-stack)
-                                    tabs.styles/message-counter
-                                    tabs.styles/counter)}
-               [badge/message-counter (or (:other count) count) true]]
-              (pos? (:public count))
-              [react/view {:style (tabs.styles/counter-public-container)}
-               [react/view {:style               tabs.styles/counter-public
-                            :accessibility-label :public-unread-badge}]]))]
-         (when-not platform/desktop?
-           [react/view {:style tabs.styles/tab-title-container}
-            [react/text {:style (tabs.styles/tab-title active?)}
-             label]])]]])))
+       [react/view {:style tabs.styles/tab-container}
+        [react/view {:style tabs.styles/icon-container}
+         [vector-icons/icon icon (tabs.styles/icon active?)]
+         (when count
+           (cond
+             (or (pos? count) (pos? (:other count)))
+             [react/view {:style (if (= nav-stack :chat-stack)
+                                   tabs.styles/message-counter
+                                   tabs.styles/counter)}
+              [badge/message-counter (or (:other count) count) true]]
+             (pos? (:public count))
+             [react/view {:style (tabs.styles/counter-public-container)}
+              [react/view {:style               tabs.styles/counter-public
+                           :accessibility-label :public-unread-badge}]]))]
+        (when-not platform/desktop?
+          [react/view {:style tabs.styles/tab-title-container}
+           [react/text {:style (tabs.styles/tab-title active?)}
+            label]])]])))
 
 (defn tabs []
   (let [listeners        (atom [])

@@ -10,6 +10,7 @@
             [status-im.ui.components.react :as react]
             [status-im.core :as core]
             [status-im.utils.snoopy :as snoopy]
+            [status-im.ui.components.tabbar.core :as tabbar]
             [status-im.ui.screens.desktop.views :as desktop-views]
             [status-im.desktop.deep-links :as deep-links]
             [status-im.utils.config :as config]
@@ -22,10 +23,7 @@
   (log/info "#desktop app-root")
   [react/view
    [react/text "###Desktop is back!!!!111111"]
-   [button/button
-    {:type     :secondary
-     :on-press #(re-frame/dispatch [:hello-world])
-     :label    "Hello there"}]]
+   [tabbar/tabs {:index 1 :navigate identity :insets {}}]]
   #_(if config/mobile-ui-for-desktop?
       (reagent/create-class
        {:component-did-mount
