@@ -263,14 +263,16 @@
                      :number-of-lines 1
                      :ellipsize-mode  :middle}
          name]]]
-      [pin.views/pin-view
-       {:pin                     pin
-        :retry-counter           retry-counter
-        :small-screen?           small-screen?
-        :status                  status
-        :error-label             error-label
-        :step                    enter-step
-        :save-password-checkbox? true}]
+      (do
+        (println :FOO enter-step)
+        [pin.views/pin-view
+         {:pin                     pin
+          :retry-counter           retry-counter
+          :small-screen?           small-screen?
+          :status                  status
+          :error-label             error-label
+          :step                    enter-step
+          :save-password-checkbox? true}])
       [react/view {:margin-bottom (if small-screen? 25 32)}
        [react/touchable-highlight
         {:on-press #(re-frame/dispatch [:multiaccounts.recover.ui/recover-multiaccount-button-pressed])}

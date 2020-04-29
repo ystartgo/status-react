@@ -10,14 +10,20 @@
 (fx/defn show-pin-sheet
   {:events [:hardwallet/new-account-pin-sheet]}
   [{:keys [db] :as cofx}]
-  (fx/merge
-   cofx
-   {:db (-> db
-            (assoc-in [:hardwallet :pin :enter-step] :export-key)
-            (update-in [:hardwallet :pin] dissoc :export-key))}
-   (bottom-sheet/show-bottom-sheet
-    {:view {:content add-new.views/pin
-            :height  256}})))
+  (let [{:keys [pin-retry-counter]}
+        (get-in db [:hardwallet :application-info])]
+    (fx/merge
+     cofx
+     {:db (-> db
+              (update-in [:hardwallet :pin] assoc
+                         :enter-step
+                         (if (zero? pin-retry-counter)
+                           :puk
+                           :export-key))
+              (update-in [:hardwallet :pin] dissoc :export-key))}
+     (bottom-sheet/show-bottom-sheet
+      {:view {:content add-new.views/pin
+              :height  256}}))))
 
 (fx/defn hide-pin-sheet
   {:events [:hardwallet/hide-new-account-pin-sheet]}

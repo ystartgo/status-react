@@ -127,9 +127,11 @@
           (re-frame/dispatch [:set-in [:add-account :private-key] (security/mask-data %)]))}])])
 
 (defview pin []
-  (letsubs [pin         [:hardwallet/pin]
-            status      [:hardwallet/pin-status]
-            error-label [:hardwallet/pin-error-label]]
+  (letsubs [pin           [:hardwallet/pin]
+            status        [:hardwallet/pin-status]
+            error-label   [:hardwallet/pin-error-label]
+            retry-counter [:hardwallet/retry-counter]
+            enter-step    [:hardwallet/pin-enter-step]]
     [react/keyboard-avoiding-view {:style {:flex 1}}
      [topbar/topbar
       {:navigation :none
@@ -142,7 +144,8 @@
        :title-label       :t/current-pin
        :description-label :t/current-pin-description
        :error-label       error-label
-       :step              :export-key}]]))
+       :step              enter-step
+       :retry-counter     retry-counter}]]))
 
 (defview add-account []
   (letsubs [{:keys [type account] :as add-account} [:add-account]
