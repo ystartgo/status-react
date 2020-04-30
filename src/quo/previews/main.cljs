@@ -1,15 +1,27 @@
 (ns quo.previews.main
-  (:require [oops.core :refer [ocall]]
+  (:require [oops.core :refer [oget ocall]]
             [quo.previews.header :as header]
             [quo.previews.text :as text]
             [quo.previews.text-input :as text-input]
             [quo.previews.tooltip :as tooltip]
             [quo.react-native :as rn]
+            [quo.react :as react]
             [quo.core :as quo]
             [reagent.core :as reagent]
             [quo.design-system.colors :as colors]
             [quo.theme :as theme]
-            [status-im.ui.screens.routing.core :as navigation]))
+            ["@react-navigation/native" :refer (NavigationContainer CommonActions)]
+            ["@react-navigation/stack" :refer (createStackNavigator)]))
+
+
+(defonce navigator-ref (react/create-ref))
+
+(defn navigate-to [route params]
+  (when-let [navigator (react/current-ref navigator-ref)]
+    (ocall navigator "dispatch"
+           (ocall CommonActions "navigate"
+                  #js {:name   (name route)
+                       :params (clj->js params)}))))
 
 (def screens [{:name      :texts
                :insets    {:top false}
@@ -55,12 +67,11 @@
    [theme-switcher]
    [rn/view
     (for [{:keys [name]} screens]
-      [rn/touchable-opacity {:on-press #(navigation/navigate-to name nil)}
+      [rn/touchable-opacity {:on-press #(navigate-to name nil)}
        [rn/view {:style {:padding-vertical 8}}
         [quo/text (str "Preview " name)]]])]])
 
 (defonce navigation-state (atom nil))
-
 (defn- persist-state! [state-obj]
   (js/Promise.
    (fn [resolve _]
@@ -68,23 +79,16 @@
      (resolve true))))
 
 (defn preview-screens []
-  (let [stack (navigation/create-stack)]
-    [navigation/navigation-container
-     {:ref             navigation/set-navigator-ref
+  (let [stack-obj (createStackNavigator)
+        stack     (oget stack-obj "Navigator")
+        screen    (oget stack-obj "Screen")]
+    [:> NavigationContainer
+     {:ref             navigator-ref
       :initial-state   @navigation-state
       :on-state-change persist-state!}
-     [stack {}
-      (into [{:name      :main
-              :insets    {:top false}
-              :component main-screen}]
-            screens)]]))
-
-
-
-;; TODO(Ferossgp): Add separate build when shadow-cljs will be integrated
-;; NOTE(Ferossgp): Separate app can be used to preview all available
-;; and possible state for components, and for UI testing based on screenshots
-
+     (into [:> stack {}
+        (map (fn [option] [:> screen (update option :component #(fn [] (reagent/as-element %)))])
+             (into [{:name :main :component main-screen}] screens))])]))
 
 (defn init []
-  (.registerComponent ^js rn/app-registry "StatusIm" #(reagent/reactify-component preview-screens)))
+  (.registerComponent ^js rn/app-registry "StatusQuo" #(reagent/reactify-component preview-screens)))

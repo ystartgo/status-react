@@ -3,9 +3,7 @@
             [reagent.core :as reagent]
             [oops.core :refer [ocall]]
             [quo.react-native :as rn]
-            ;; TODO(Ferossgp): Move icon component to lib
-            [status-im.ui.components.icons.vector-icons :as icons]
-            ;; TODO(Ferossgp): Move tooltip into lib
+            [quo.components.vector-icons :as icons]
             [quo.components.tooltip :as tooltip]
             [quo.react :as react]
             [quo.platform :as platform]
