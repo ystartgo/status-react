@@ -81,7 +81,10 @@ target 'StatusIm' do
   pod 'SQLCipher', '~>3.0'
   pod 'SSZipArchive'
 
-
+  add_flipper_pods!
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
   target 'StatusImTests' do
     inherit! :complete
     # Pods for testing

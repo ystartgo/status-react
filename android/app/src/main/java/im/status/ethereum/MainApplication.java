@@ -3,7 +3,7 @@ package im.status.ethereum;
 import androidx.multidex.MultiDexApplication;
 import android.util.Log;
 import android.content.Context;
-import com.facebook.react.ReactInstanceManager;
+import java.lang.reflect.InvocationTargetException;
 import com.facebook.react.PackageList;
 import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
 import com.facebook.react.bridge.JavaScriptExecutorFactory;
@@ -13,6 +13,7 @@ import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.facebook.react.ReactInstanceManager;
 
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
                   We use reflection here to pick up the class that initializes Flipper,
                   since Flipper library is not available in release mode
                 */
-                Class<?> aClass = Class.forName("com.statusquo.ReactNativeFlipper");
+                Class<?> aClass = Class.forName("im.status.ethereum.ReactNativeFlipper");
                 aClass
                     .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
                     .invoke(null, context, reactInstanceManager);
