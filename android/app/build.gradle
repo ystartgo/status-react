@@ -295,6 +295,7 @@ dependencies {
     } else {
       implementation jscFlavor
     }
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
     // react-native-screens
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
