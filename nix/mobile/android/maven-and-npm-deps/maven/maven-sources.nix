@@ -6848,21 +6848,6 @@ in {
       sha256 = "1yhiv7icvfrm1h9gk4xfidh016czlkl1sifhn77xyvsaw1rbicf7";
     };
   };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-gradle-plugin/1.3.50/kotlin-gradle-plugin-1.3.50" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-gradle-plugin/1.3.50/kotlin-gradle-plugin-1.3.50";
-    type = "jar";
-    pom = {
-      sha1 = "89963a567f68092739e0e09bfdf8d2559a01a36b";
-      sha256 = "19a1nifvwb94wmf1w6akark71dbphnxd5ap8vv7mk589wv7wy082";
-    };
-    jar = {
-      sha1 = "64a7b2a2027c9ff272c09b24817149faa2b1d535";
-      sha256 = "09hzhxysaas396m3k7v9lgfhbsm14l4c84g6xb4kzifszr564pb3";
-    };
-  };
   "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-gradle-plugin-api/1.3.50/kotlin-gradle-plugin-api-1.3.50" =
   {
     host = repositories.jcenter;
@@ -6891,6 +6876,21 @@ in {
     jar = {
       sha1 = "2c706770a3f5af1bb34496ecda4ca2b8a9bb7f86";
       sha256 = "1pnybswr7j90pbkgf3n3r6wxlfyncgvkrm5jvn3g9p8vi7ckwa7w";
+    };
+  };
+  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-gradle-plugin/1.3.50/kotlin-gradle-plugin-1.3.50" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/jetbrains/kotlin/kotlin-gradle-plugin/1.3.50/kotlin-gradle-plugin-1.3.50";
+    type = "jar";
+    pom = {
+      sha1 = "89963a567f68092739e0e09bfdf8d2559a01a36b";
+      sha256 = "19a1nifvwb94wmf1w6akark71dbphnxd5ap8vv7mk589wv7wy082";
+    };
+    jar = {
+      sha1 = "64a7b2a2027c9ff272c09b24817149faa2b1d535";
+      sha256 = "09hzhxysaas396m3k7v9lgfhbsm14l4c84g6xb4kzifszr564pb3";
     };
   };
   "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-native-utils/1.3.50/kotlin-native-utils-1.3.50" =
@@ -6968,6 +6968,21 @@ in {
       sha256 = "196pndsn0701g791sbanxqk44y2zja454nfi3gyswm2sxack2n34";
     };
   };
+  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-script-runtime/1.3.50/kotlin-script-runtime-1.3.50" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/jetbrains/kotlin/kotlin-script-runtime/1.3.50/kotlin-script-runtime-1.3.50";
+    type = "jar";
+    pom = {
+      sha1 = "66865d5ba1ee04d5194e38fb7cd247c56db34676";
+      sha256 = "12z9p0wlagggnfjh0lv13pqvbasyakgxkcpkpqs8786kc1lp9anx";
+    };
+    jar = {
+      sha1 = "59492b8dfb92522ba0ddb5dd1c4d0ef0a4fca1af";
+      sha256 = "0k3yzdb7w99p839839279b7v129bp6ln52g7l3hgnah6px90rxvz";
+    };
+  };
   "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-scripting-common/1.3.50/kotlin-scripting-common-1.3.50" =
   {
     host = repositories.jcenter;
@@ -7026,81 +7041,6 @@ in {
     jar = {
       sha1 = "53f579e1bee3dab3df915d923ad1bb43bc37cd18";
       sha256 = "1hn0hjkjclls2k2l5a6bwr6bc0vy4366fd8la3wydlz0iavs2vzs";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-script-runtime/1.3.50/kotlin-script-runtime-1.3.50" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-script-runtime/1.3.50/kotlin-script-runtime-1.3.50";
-    type = "jar";
-    pom = {
-      sha1 = "66865d5ba1ee04d5194e38fb7cd247c56db34676";
-      sha256 = "12z9p0wlagggnfjh0lv13pqvbasyakgxkcpkpqs8786kc1lp9anx";
-    };
-    jar = {
-      sha1 = "59492b8dfb92522ba0ddb5dd1c4d0ef0a4fca1af";
-      sha256 = "0k3yzdb7w99p839839279b7v129bp6ln52g7l3hgnah6px90rxvz";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.1.3-2/kotlin-stdlib-1.1.3-2" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-scripting-compiler-embeddable/1.3.11/kotlin-scripting-compiler-embeddable-1.3.11";
-    type = "jar";
-    pom = {
-      sha1 = "6fa59516393458c374084e38ebcb60a8890d084c";
-      sha256 = "1w8n7mx6az8cg5lga18294jfpji3k1219dshwpmvl3fyb3jfpdn7";
-    };
-    jar = {
-      sha1 = "d7d145f70c063e3bb2edb41b766971e359155b99";
-      sha256 = "0mlky818z269mdcnyy1k48kq2xclaa5lvc4xxhy013ljlmsf26ai";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.2.71/kotlin-stdlib-1.2.71" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-stdlib/1.2.71/kotlin-stdlib-1.2.71";
-    type = "jar";
-    pom = {
-      sha1 = "e34c8d5c8e7077a037dadcc70b114e130eb9824b";
-      sha256 = "1bkmzahsp7jxpg4nq7zal2rl5ncv3c2v08swz5qaciqck9ybfgbi";
-    };
-    jar = {
-      sha1 = "d9717625bb3c731561251f8dd2c67a1011d6764c";
-      sha256 = "12y6zdmb92sq51y54qg93n1fw1slq64isvkrlb1gxxc71ckmr2ac";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.3.20/kotlin-stdlib-1.3.20" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-stdlib/1.3.20/kotlin-stdlib-1.3.20";
-    type = "jar";
-    pom = {
-      sha1 = "9d1e01f424795aa471a8def0b5dc8aeeb537aafd";
-      sha256 = "07716p4bm3j9wqcs1qb599x7wnnavmafv5lj2zsflp6p80d9vvrj";
-    };
-    jar = {
-      sha1 = "eb2a232734e09fcd1b958a5c7520a93c6de38b32";
-      sha256 = "0q9kirl7szl466kf8dza7kc115swpzb4xdnpxal3vyv8m46r27v0";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.3.50/kotlin-stdlib-1.3.50" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-stdlib/1.3.50/kotlin-stdlib-1.3.50";
-    type = "jar";
-    pom = {
-      sha1 = "a75b191fa2963dcd96413bab2d0fb385b136a4e6";
-      sha256 = "0qaa94ccn4kfhs52604l1hc4qbhj3jampkcvyql6815fc24xfkvh";
-    };
-    jar = {
-      sha1 = "b529d1738c7e98bbfa36a4134039528f2ce78ebf";
-      sha256 = "0v4d91v6klav42xkn269h90g9p3lqkx9181552sx0rh3xr35gw76";
     };
   };
   "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib-common/1.2.71/kotlin-stdlib-common-1.2.71" =
@@ -7238,37 +7178,7 @@ in {
       sha256 = "036sshiy9rm5ck3pp2rl7kjflhl9yi61yk674mava54ww2v1yd8v";
     };
   };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-util-io/1.3.50/kotlin-util-io-1.3.50" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-util-io/1.3.50/kotlin-util-io-1.3.50";
-    type = "jar";
-    pom = {
-      sha1 = "6067fcb474e304327d3e63bf668c1aa57b81c9dc";
-      sha256 = "0wfkcccr37wzavpjni1sqbww7nsn2xxfwsrdqgiks21x0hc1jinh";
-    };
-    jar = {
-      sha1 = "6fdca94477606c2aa9e46cc6114d01b90b1282ff";
-      sha256 = "0kbhxmmg7qwi9xnnp23bj0cfpm1pv0ab5b2q8ki770gz4yzax7jl";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlinx/kotlinx-coroutines-core/1.1.1/kotlinx-coroutines-core-1.1.1" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.1.1/kotlinx-coroutines-core-1.1.1";
-    type = "jar";
-    pom = {
-      sha1 = "050d1d23e091a12b5aa20f4cbd03c95dcd1a202e";
-      sha256 = "0bw7cklnvl7z1b5x5s53vq6wp3lh8mfn3jlvw8gmd49zgzlmgzl2";
-    };
-    jar = {
-      sha1 = "3d2b7321cdef9ebf9cb7729ea4f75a6f6457df86";
-      sha256 = "0i3q3yffc9gzbnba30miia61my3i04nghvv9552ygd541a53yhmc";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/trove4j/trove4j/20160824/trove4j-20160824" =
+  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.1.3-2/kotlin-stdlib-1.1.3-2" =
   {
     host = repositories.jcenter;
     path =
@@ -7296,21 +7206,6 @@ in {
     jar = {
       sha1 = "d9717625bb3c731561251f8dd2c67a1011d6764c";
       sha256 = "12y6zdmb92sq51y54qg93n1fw1slq64isvkrlb1gxxc71ckmr2ac";
-    };
-  };
-  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.3.11/kotlin-stdlib-1.3.11" =
-  {
-    host = repositories.jcenter;
-    path =
-      "org/jetbrains/kotlin/kotlin-stdlib/1.3.11/kotlin-stdlib-1.3.11";
-    type = "jar";
-    pom = {
-      sha1 = "9f75d04501cfa4cde4597bd6f3db669f463c7fb5";
-      sha256 = "0bmd8fy9bs6zcyw3dm2vi9mvzxz0lhimz4z4z6nksf2kqh0a47gg";
-    };
-    jar = {
-      sha1 = "4cbc5922a54376018307a731162ccaf3ef851a39";
-      sha256 = "1v1zx1jw1lpv1h9rmd2hpiacwzvi348hcl64wvbl76vazrwskrsw";
     };
   };
   "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-stdlib/1.3.20/kotlin-stdlib-1.3.20" =
@@ -7341,6 +7236,36 @@ in {
     jar = {
       sha1 = "b529d1738c7e98bbfa36a4134039528f2ce78ebf";
       sha256 = "0v4d91v6klav42xkn269h90g9p3lqkx9181552sx0rh3xr35gw76";
+    };
+  };
+  "https://jcenter.bintray.com/org/jetbrains/kotlin/kotlin-util-io/1.3.50/kotlin-util-io-1.3.50" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/jetbrains/kotlin/kotlin-util-io/1.3.50/kotlin-util-io-1.3.50";
+    type = "jar";
+    pom = {
+      sha1 = "6067fcb474e304327d3e63bf668c1aa57b81c9dc";
+      sha256 = "0wfkcccr37wzavpjni1sqbww7nsn2xxfwsrdqgiks21x0hc1jinh";
+    };
+    jar = {
+      sha1 = "6fdca94477606c2aa9e46cc6114d01b90b1282ff";
+      sha256 = "0kbhxmmg7qwi9xnnp23bj0cfpm1pv0ab5b2q8ki770gz4yzax7jl";
+    };
+  };
+  "https://jcenter.bintray.com/org/jetbrains/kotlinx/kotlinx-coroutines-core/1.1.1/kotlinx-coroutines-core-1.1.1" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/jetbrains/kotlinx/kotlinx-coroutines-core/1.1.1/kotlinx-coroutines-core-1.1.1";
+    type = "jar";
+    pom = {
+      sha1 = "050d1d23e091a12b5aa20f4cbd03c95dcd1a202e";
+      sha256 = "0bw7cklnvl7z1b5x5s53vq6wp3lh8mfn3jlvw8gmd49zgzlmgzl2";
+    };
+    jar = {
+      sha1 = "3d2b7321cdef9ebf9cb7729ea4f75a6f6457df86";
+      sha256 = "0i3q3yffc9gzbnba30miia61my3i04nghvv9552ygd541a53yhmc";
     };
   };
   "https://jcenter.bintray.com/org/jetbrains/trove4j/trove4j/20160824/trove4j-20160824" =
@@ -7581,6 +7506,66 @@ in {
     jar = {
       sha1 = "430b2fc839b5de1f3643b528853d5cf26096c1de";
       sha256 = "1xm5pi4v9m041csb1956lni7mcd3163qy675c991fw7qn2yzwsim";
+    };
+  };
+  "https://jcenter.bintray.com/org/ow2/asm/asm/5.0.3/asm-5.0.3" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/ow2/asm/asm/5.0.3/asm-5.0.3";
+    type = "jar";
+    pom = {
+      sha1 = "7d9570aceff0131a35a87d37b53452be33cf3cd9";
+      sha256 = "18565g4264fv0d7hq9fq34dyrybxl5h9d5pis8a7ggk2zqznad3x";
+    };
+    jar = {
+      sha1 = "dcc2193db20e19e1feca8b1240dbbc4e190824fa";
+      sha256 = "1k265g2nq810yg7sb9h5f1kyp2f0m2z2mz8drkcxr3vv8f7ggi3i";
+    };
+  };
+  "https://jcenter.bintray.com/org/ow2/asm/asm/5.0.4/asm-5.0.4" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/ow2/asm/asm/5.0.4/asm-5.0.4";
+    type = "jar";
+    pom = {
+      sha1 = "b4b92f4b84715dec57de734ff4c3098aa6904d06";
+      sha256 = "043zq0mg31zx5p6hp7jg7zmiibim45c23cd6lx2zh9cbpl4c5cmq";
+    };
+    jar = {
+      sha1 = "0da08b8cce7bbf903602a25a3a163ae252435795";
+      sha256 = "0852x4qyrk9ykbw1a2ljwq41ljbw5gj7pg3q399049z6ibnihrl9";
+    };
+  };
+  "https://jcenter.bintray.com/org/ow2/asm/asm/5.1/asm-5.1" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/ow2/asm/asm/5.1/asm-5.1";
+    type = "jar";
+    pom = {
+      sha1 = "87afb3c6d9329d889ef8dc7bded4a5482cb15e99";
+      sha256 = "01dj1vq56rz9k9sdsczkfjajxkzmxqxlcs6cmjx27wrrpxd9n1vd";
+    };
+    jar = {
+      sha1 = "5ef31c4fe953b1fd00b8a88fa1d6820e8785bb45";
+      sha256 = "0m2bfr224dqpvk5cm0ih48n2516jg7x5d4kk4459zik7k6d3knnj";
+    };
+  };
+  "https://jcenter.bintray.com/org/ow2/asm/asm/6.0/asm-6.0" =
+  {
+    host = repositories.jcenter;
+    path =
+      "org/ow2/asm/asm/6.0/asm-6.0";
+    type = "jar";
+    pom = {
+      sha1 = "8e8ac765fb0b5099bde117857df7f7cc7aa08165";
+      sha256 = "0bn3281hli8z7dx2cs6s0a0bxc0sbfsbn9jl12cyc4ki35z4kg62";
+    };
+    jar = {
+      sha1 = "bc6fa6b19424bb9592fe43bbc20178f92d403105";
+      sha256 = "0q8489h5grwm2xxvkikd91nflq47xbjalp79m2cphsaf9b3p32fx";
     };
   };
   "https://jitpack.io/com/github/status-im/function/0.0.1/function-0.0.1" =
@@ -8469,21 +8454,6 @@ in {
     jar = {
       sha1 = "66fce4fe7e661f084ec4f4501196c6b64a69f7b8";
       sha256 = "1hmpng2xfjblgjcj2m5qwqrsyn29r7kpcj9963xcwaldzbk6sp2f";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/com/google/android/android/4.1.1.4/android-4.1.1.4" =
-  {
-    host = repositories.apache;
-    path =
-      "com/google/android/android/4.1.1.4/android-4.1.1.4";
-    type = "jar";
-    pom = {
-      sha1 = "469412c22dd395b960813c71d16c252595513d6c";
-      sha256 = "097iq5s0y6bijxq9z5raj1djgg3mjwc3hck3d74jh6wkpi0fp51k";
-    };
-    jar = {
-      sha1 = "3fb039385e71e9aa2ba547ea9ea8caa34a4ffac7";
-      sha256 = "1jyk9w5hwd2w34dynz5sdm29m4jlz07i0xvjkzwfy4dprd0ja1w4";
     };
   };
   "https://repo.maven.apache.org/maven2/com/google/auto/auto-common/0.3/auto-common-0.3" =
@@ -9557,51 +9527,6 @@ in {
     pom = {
       sha1 = "9ba9933c19605c86a59d0a7861312e7c3ac83a1d";
       sha256 = "1wzvdvf67dw7zzlwrvb8phl5nw79kqw5sjlplqah16cni6ppfgzb";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/mockwebserver/3.12.1/mockwebserver-3.12.1" =
-  {
-    host = repositories.apache;
-    path =
-      "com/squareup/okhttp3/mockwebserver/3.12.1/mockwebserver-3.12.1";
-    type = "jar";
-    pom = {
-      sha1 = "fea7ef710abf839080391f467074c610cfb6a1b5";
-      sha256 = "1pfx6skp39ql4b798vb8cfpay5pfd9ywg32mlgfx0m0ga7q85xxr";
-    };
-    jar = {
-      sha1 = "285880421051c9b6dc3bdb355deacdf999353bfe";
-      sha256 = "1yh0fj38fywsq8706qz9cc3323ibrb7vw07m8mvcrn6i1c291zlw";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-testing-support/3.12.1/okhttp-testing-support-3.12.1" =
-  {
-    host = repositories.apache;
-    path =
-      "com/squareup/okhttp3/okhttp-testing-support/3.12.1/okhttp-testing-support-3.12.1";
-    type = "jar";
-    pom = {
-      sha1 = "6d5a724b40195ef7b2ca9625439c58f167a74c22";
-      sha256 = "07r17w01h3a4b1rbikhs07igsnvny3fgbxnl91dradmicbydx0pz";
-    };
-    jar = {
-      sha1 = "493be2ce0a9b62112dc0b35c3be0e76d63eaeb2a";
-      sha256 = "192jg7fqws85divkcdjj2859lhajqvxspfpdf8d98s7cgrsj06k3";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp-tls/3.12.1/okhttp-tls-3.12.1" =
-  {
-    host = repositories.apache;
-    path =
-      "com/squareup/okhttp3/okhttp-tls/3.12.1/okhttp-tls-3.12.1";
-    type = "jar";
-    pom = {
-      sha1 = "3503aab6bea92dfefb4552128ed23f62dfba3897";
-      sha256 = "0874bzl236371qwbq4l1pshkbykfsgfgv1w8z85wsr8g2d4qjwwd";
-    };
-    jar = {
-      sha1 = "5f82cf038319971376ba19d5157077caa9537f17";
-      sha256 = "05m1aai95lg2kxjwz0qzv7vgk851k8b1zabh4syywhcxfxx223ii";
     };
   };
   "https://repo.maven.apache.org/maven2/com/squareup/okhttp3/parent/3.12.1/parent-3.12.1" =
@@ -11665,7 +11590,7 @@ in {
       "org/apache/apache/20/apache-20";
     type = "jar";
     pom = {
-      sha1 = "";
+      sha1 = "4fb8f25e507d8f53ed9f4d79510fc42a2ce92dad";
       sha256 = "0lyz2sgh3iw3hm2j900nkhs7imf9m28cpkh9r32npv1j1am54f4m";
     };
   };
@@ -12421,21 +12346,6 @@ in {
       sha256 = "1ync8s7qsp6q4642zq095f10qzy08v4wi1xili5lya1jagklxp03";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpclient/4.0.1/httpclient-4.0.1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/httpcomponents/httpclient/4.0.1/httpclient-4.0.1";
-    type = "jar";
-    pom = {
-      sha1 = "2bd89707ff72268b82c1a6ef901fe1a7cf42461b";
-      sha256 = "1cji45wbnlmnv68m5mfmpa0ml15my8r27g0p3n30sw51lhjw1f2i";
-    };
-    jar = {
-      sha1 = "1d7d28fa738bdbfe4fbd895d9486308999bdf440";
-      sha256 = "00rwar2fx17jvchk7qlxk9kk91q7dnq3ppjmlvcyb6kwvkmrc9bm";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpclient/4.0.2/httpclient-4.0.2" =
   {
     host = repositories.apache;
@@ -12479,17 +12389,6 @@ in {
     jar = {
       sha1 = "9783d89b8eea20a517a4afc5f979bd2882b54c44";
       sha256 = "1ipqxr7qsin53q1j6xw5aa3kqciv2fxazmm9axzkzpl5rqdm515i";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpcomponents-client/4.0.1/httpcomponents-client-4.0.1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/httpcomponents/httpcomponents-client/4.0.1/httpcomponents-client-4.0.1";
-    type = "jar";
-    pom = {
-      sha1 = "caa8c590d68feb60218536f4ac95ed3338161791";
-      sha256 = "05b5ygrq2bh7kq19lwpw9cddl0c3y50si3hf2p8pzkkp8ikzqp0s";
     };
   };
   "https://repo.maven.apache.org/maven2/org/apache/httpcomponents/httpcomponents-client/4.0.2/httpcomponents-client-4.0.2" =
@@ -17346,21 +17245,6 @@ in {
       sha256 = "09ppgy8lcnkmll1rkr7gspa5jy1fixq318g4iqr9f4d14dvnvja8";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/3.0.1/maven-javadoc-plugin-3.0.1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/plugins/maven-javadoc-plugin/3.0.1/maven-javadoc-plugin-3.0.1";
-    type = "jar";
-    pom = {
-      sha1 = "67926d198726faf4b9b816f5f098f754bebf3ac9";
-      sha256 = "1z0hq86d1ql6b6zc9hxxs3bkdg8fw9i3844996rrcfz2i85f3lf9";
-    };
-    jar = {
-      sha1 = "c3196efee62d36bac6c32352fca0448a2d0dec99";
-      sha256 = "1lc4g2cxabklih7vi68m6irf2757dskcnkgn42sl58rqkwbyh8jv";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/3.2.0/maven-javadoc-plugin-3.2.0" =
   {
     host = repositories.apache;
@@ -18433,21 +18317,6 @@ in {
     jar = {
       sha1 = "8adc7b2b94e83a8df238bad8011b9be046f7aad5";
       sha256 = "1ypym86z52kq1ii6spmn6cv8mfwga4wn7gznj297pngnb2i84vm2";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.22.1/maven-surefire-plugin-2.22.1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/plugins/maven-surefire-plugin/2.22.1/maven-surefire-plugin-2.22.1";
-    type = "jar";
-    pom = {
-      sha1 = "7ebd2eb7c940e24207e910bf4f6491cd38acea5e";
-      sha256 = "07cr7mhsjnf59phd3ff4adpjrd095l36kdzdr0445d0qmkmx1mcq";
-    };
-    jar = {
-      sha1 = "025468bdffb3d04eb051ca5e0b33d7e8bb10381e";
-      sha256 = "0vaby8pqpl9s5249ny8hf6i2drphpgm7kx93xljzpqjfim9xs1jp";
     };
   };
   "https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-plugin/2.3/maven-surefire-plugin-2.3" =
@@ -19825,17 +19694,6 @@ in {
       sha256 = "1k9l5ir64jqnkqj91qkgqykdd0i8qygkv4z3bwj6sh4plzc3cvrv";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.22.1/surefire-2.22.1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/surefire/surefire/2.22.1/surefire-2.22.1";
-    type = "jar";
-    pom = {
-      sha1 = "535508195981dabd311b01bb70daf7558eaf0ea4";
-      sha256 = "093d1z6ggj83vqm3lv83jhz9ddm3yfzp2fx88d1n113301vad615";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/apache/maven/surefire/surefire/2.3/surefire-2.3" =
   {
     host = repositories.apache;
@@ -19911,61 +19769,6 @@ in {
     pom = {
       sha1 = "3d46681c2b8a6cebc68b4b4d4a824a49c207e433";
       sha256 = "00p1qfgxc2pknwd7hzvf00fm10k0353xxglnp4m7jfmv54ap21bf";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6";
-    type = "jar";
-    pom = {
-      sha1 = "69aa7db6cd9b32c6026dfb3d77d6a6865a2a9fc3";
-      sha256 = "1bqfgdbc3648jqywcia0d8jz4mjr04mcrj7mr0503hqwsjf2nqrn";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-beta-2/wagon-1.0-beta-2" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/wagon/wagon/1.0-beta-2/wagon-1.0-beta-2";
-    type = "jar";
-    pom = {
-      sha1 = "6cf8a47018be792d2b1774d2bacd7541c888ae50";
-      sha256 = "1yssnc8w2xyak11qnm5xbwl79haxmcspm1l8k1a49v20bg4jrnpc";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6";
-    type = "jar";
-    pom = {
-      sha1 = "0a5a7966afb1b64f97c2f3f23a3e80592dc94986";
-      sha256 = "1k43f6drp6ia61vfpg1fwa8s5nr37sn1ig25dkcb833aqp3swp02";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/2.10/wagon-2.10" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/wagon/wagon/2.10/wagon-2.10";
-    type = "jar";
-    pom = {
-      sha1 = "d51307a7a9d4909736d942b1f8a0711c11f90aca";
-      sha256 = "0jvh2baa2ff5v1pqbqvgyxj7537yhgm5qndr5ih7m61ig8sgzgl2";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/2.7/wagon-2.7" =
-  {
-    host = repositories.apache;
-    path =
-      "org/apache/maven/wagon/wagon/2.7/wagon-2.7";
-    type = "jar";
-    pom = {
-      sha1 = "1a0fe7a60815fdfc1515b3b1f7e5b2c119443462";
-      sha256 = "1m7dwgf1sqfzda8y4xgjbbq3fl71d03z13kf5yl9dh0vwi71d55l";
     };
   };
   "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon-http-shared/2.7/wagon-http-shared-2.7" =
@@ -20073,6 +19876,17 @@ in {
   {
     host = repositories.apache;
     path =
+      "org/apache/maven/wagon/wagon-providers/2.7/wagon-providers-2.7";
+    type = "jar";
+    pom = {
+      sha1 = "56cb0789db9cd9e2f48941bfb004677134b439cf";
+      sha256 = "1y6pmp3xy4g7mkh9lgfpnjx62220flh2h1pf4p0lj0wsj1a3n9qv";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon-webdav-jackrabbit/2.7/wagon-webdav-jackrabbit-2.7" =
+  {
+    host = repositories.apache;
+    path =
       "org/apache/maven/wagon/wagon-webdav-jackrabbit/2.7/wagon-webdav-jackrabbit-2.7";
     type = "jar";
     pom = {
@@ -20085,6 +19899,54 @@ in {
     };
   };
   "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon-webdav/1.0-beta-2/wagon-webdav-1.0-beta-2" =
+  {
+    host = repositories.apache;
+    path =
+      "org/apache/maven/wagon/wagon-webdav/1.0-beta-2/wagon-webdav-1.0-beta-2";
+    type = "jar";
+    pom = {
+      sha1 = "1f6d30fd6d75cba5b9ff3fb88cb35cf9f2895736";
+      sha256 = "0f4rvk29xmi6c1591476g55dx4ijsj8qwh6f9jxgb1d6sfcmci7n";
+    };
+    jar = {
+      sha1 = "705d42d0d3bc584e1d01a892bb8bc01928c5b126";
+      sha256 = "0l57gcc7l0nhis9dpcpy2q9niw0bh7p8nw49fkzxlwyqvqndd0dd";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6" =
+  {
+    host = repositories.apache;
+    path =
+      "org/apache/maven/wagon/wagon/1.0-alpha-6/wagon-1.0-alpha-6";
+    type = "jar";
+    pom = {
+      sha1 = "69aa7db6cd9b32c6026dfb3d77d6a6865a2a9fc3";
+      sha256 = "1bqfgdbc3648jqywcia0d8jz4mjr04mcrj7mr0503hqwsjf2nqrn";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-beta-2/wagon-1.0-beta-2" =
+  {
+    host = repositories.apache;
+    path =
+      "org/apache/maven/wagon/wagon/1.0-beta-2/wagon-1.0-beta-2";
+    type = "jar";
+    pom = {
+      sha1 = "6cf8a47018be792d2b1774d2bacd7541c888ae50";
+      sha256 = "1yssnc8w2xyak11qnm5xbwl79haxmcspm1l8k1a49v20bg4jrnpc";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6" =
+  {
+    host = repositories.apache;
+    path =
+      "org/apache/maven/wagon/wagon/1.0-beta-6/wagon-1.0-beta-6";
+    type = "jar";
+    pom = {
+      sha1 = "0a5a7966afb1b64f97c2f3f23a3e80592dc94986";
+      sha256 = "1k43f6drp6ia61vfpg1fwa8s5nr37sn1ig25dkcb833aqp3swp02";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/apache/maven/wagon/wagon/2.10/wagon-2.10" =
   {
     host = repositories.apache;
     path =
@@ -20684,21 +20546,6 @@ in {
       sha256 = "14vb8ghycrx2psrx5yqjidy5sdfcn484fij4mm571sy89hyypb83";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-annotations/1.15/animal-sniffer-annotations-1.15" =
-  {
-    host = repositories.apache;
-    path =
-      "org/codehaus/mojo/animal-sniffer-annotations/1.15/animal-sniffer-annotations-1.15";
-    type = "jar";
-    pom = {
-      sha1 = "619990be2896b620c1bd44c2a22736bac9313431";
-      sha256 = "04n7mxyvk7xh4w4vavv0wwjq0b0rdwf36jcblp4apzrrd9gkd6am";
-    };
-    jar = {
-      sha1 = "3f19b51588ad71482ce4c169f54f697b6181d1b4";
-      sha256 = "1hg2hp8b7b8yv9523mvdx14q1k963v9bpgqdhf9spd23rljp4700";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-maven-plugin/1.10/animal-sniffer-maven-plugin-1.10" =
   {
     host = repositories.apache;
@@ -20757,21 +20604,6 @@ in {
     jar = {
       sha1 = "f24fee5194855a6a23c2fec9795bdbb0ff5a3cb4";
       sha256 = "0vca2mgnf5lrprk41vlnv93hm8h4awr614zb9b7nrx20qqgxzf6m";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-maven-plugin/1.15/animal-sniffer-maven-plugin-1.15" =
-  {
-    host = repositories.apache;
-    path =
-      "org/codehaus/mojo/animal-sniffer-maven-plugin/1.15/animal-sniffer-maven-plugin-1.15";
-    type = "jar";
-    pom = {
-      sha1 = "6460c127c6971b09e2db479231c981836edd60af";
-      sha256 = "1d2jlr33knc4cnclg8wnn9sdmywaqdjl40i69za03xiksvcsxr2m";
-    };
-    jar = {
-      sha1 = "7547a24a835c4c811045f28284bcc1b6e8bf1e42";
-      sha256 = "022ky6rnqsppdg3rr4s6gizcqi9nx83l1lwa8fq4ig6fglz0i7hi";
     };
   };
   "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-maven-plugin/1.16/animal-sniffer-maven-plugin-1.16" =
@@ -20846,17 +20678,6 @@ in {
     pom = {
       sha1 = "c1e91a9c2f36d9e6d3c7087242d8d9ec56052e5d";
       sha256 = "1skf65rbw52shb2akgs7xykn06lj1ggp23nbc94vs40ldfh505gm";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-parent/1.15/animal-sniffer-parent-1.15" =
-  {
-    host = repositories.apache;
-    path =
-      "org/codehaus/mojo/animal-sniffer-parent/1.15/animal-sniffer-parent-1.15";
-    type = "jar";
-    pom = {
-      sha1 = "fd4ad95baa39049320fb399eff275266ee6adebe";
-      sha256 = "1vq1m3hgyw8dg5p0j2hy9cagdvahyxqj0kv7yy7510wr3crc08bl";
     };
   };
   "https://repo.maven.apache.org/maven2/org/codehaus/mojo/animal-sniffer-parent/1.16/animal-sniffer-parent-1.16" =
@@ -21326,21 +21147,6 @@ in {
     pom = {
       sha1 = "b92c961835648c997f63aa2cbb6774e3e591e2ba";
       sha256 = "1grvxgxhcx125917gzgwjh0al2gnvyz4r2dpdb33v7hkdclq61mj";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/codehaus/mojo/templating-maven-plugin/1.0-alpha-3/templating-maven-plugin-1.0-alpha-3" =
-  {
-    host = repositories.apache;
-    path =
-      "org/codehaus/mojo/templating-maven-plugin/1.0-alpha-3/templating-maven-plugin-1.0-alpha-3";
-    type = "jar";
-    pom = {
-      sha1 = "9ddf35a2c0c032c1c652f00cfd6b22643d6ec98a";
-      sha256 = "04z8nlw88bkamjzl0p1vqj8rkxak7f4qjv4j9v9cybqf8k4znwd5";
-    };
-    jar = {
-      sha1 = "e9d69c141dbdebe79f60e6a99a3548676c11999d";
-      sha256 = "0skc2671dzp83yiabf726fm6ynhpx8fan9c9mjxy37wyn0fkvj6l";
     };
   };
   "https://repo.maven.apache.org/maven2/org/codehaus/mojo/templating-maven-plugin/1.0.0/templating-maven-plugin-1.0.0" =
@@ -22879,36 +22685,6 @@ in {
       sha256 = "0912d902bwgzgm5s3dp2kymc5fvqng4y7gjjhn246qnnrs2iyxrj";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/conscrypt/conscrypt-openjdk-uber/1.4.0/conscrypt-openjdk-uber-1.4.0" =
-  {
-    host = repositories.apache;
-    path =
-      "org/conscrypt/conscrypt-openjdk-uber/1.4.0/conscrypt-openjdk-uber-1.4.0";
-    type = "jar";
-    pom = {
-      sha1 = "fccecd4a4442f036ccf09133504c8b579fff526b";
-      sha256 = "05gxk0qkq6vyql4rqx0mjn94w5i201xw8f17bwhpndgjy9gm417v";
-    };
-    jar = {
-      sha1 = "d542eeb9eb86e5ce5ff78dab6ffa39f441f87122";
-      sha256 = "0qabmv05px9ddimckmrspnlq60v4s5c9dj6n4bvic4kkv4zzcz24";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/conscrypt/conscrypt-openjdk-uber/2.0.0/conscrypt-openjdk-uber-2.0.0" =
-  {
-    host = repositories.apache;
-    path =
-      "org/conscrypt/conscrypt-openjdk-uber/2.0.0/conscrypt-openjdk-uber-2.0.0";
-    type = "jar";
-    pom = {
-      sha1 = "9eec92fdbb14567f27dcff682c4c067e59f9793d";
-      sha256 = "1jfwqlvraaq8rwmq0q13kiygf4gvkhzjh7dd1ix2lm9mkmg611qs";
-    };
-    jar = {
-      sha1 = "68ea07c806ad889de05a78a508a73adf69f4c33f";
-      sha256 = "0750i4jpczbh31i9bb8nl2djzri37c0isv8j4h6ccl0wfyad2prx";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/easymock/easymock-parent/3.2/easymock-parent-3.2" =
   {
     host = repositories.apache;
@@ -23728,81 +23504,6 @@ in {
       sha256 = "077jhzkbxn7iv0hv1caxj5h89c11mlj8qrhjpamb90s9gywzrw2g";
     };
   };
-  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-stdlib-common/1.3.0/kotlin-stdlib-common-1.3.0" =
-  {
-    host = repositories.apache;
-    path =
-      "org/jetbrains/kotlin/kotlin-stdlib-common/1.3.0/kotlin-stdlib-common-1.3.0";
-    type = "jar";
-    pom = {
-      sha1 = "8aa25749d6a085239627a0a18f0502c19a5560d0";
-      sha256 = "16xf747dcx5bqsmqkahkm6ywsfg79bzabq8zjwf012pck058fvkw";
-    };
-    jar = {
-      sha1 = "84a2e0288dc17cd64d692eb1e5e0de8cd5ff0846";
-      sha256 = "0fgyfmsg8rd70q0qxz9yax1f7x26ir50qkqwkfjd3q7f37v1w5jb";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.1.3-2/kotlin-test-1.1.3-2" =
-  {
-    host = repositories.apache;
-    path =
-      "org/jetbrains/kotlin/kotlin-test/1.1.3-2/kotlin-test-1.1.3-2";
-    type = "jar";
-    pom = {
-      sha1 = "96225213ea90542b378c04ee34f586f87f702f8d";
-      sha256 = "04mpysmgnmmnslp3d0fzpla27s15xa4arpzwx6gdrplq78pxgd34";
-    };
-    jar = {
-      sha1 = "bfde381a4485e78d3542ec46f231c5e0e22aea28";
-      sha256 = "06gnp62a9fg5xfvrczx2vzqmp3k84jh2z5j9nzsl6nhs1aw7dg86";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.2.71/kotlin-test-1.2.71" =
-  {
-    host = repositories.apache;
-    path =
-      "org/jetbrains/kotlin/kotlin-test/1.2.71/kotlin-test-1.2.71";
-    type = "jar";
-    pom = {
-      sha1 = "cbae5fabd2a7cb73594f12c2b9207f5a40364639";
-      sha256 = "13ccxq0mj4z4hd365vyxijxpl5agrh6rincvqccsfslkpgfrf6gl";
-    };
-    jar = {
-      sha1 = "71f526c39299e20d2d225898d3a843da1dcfb4dc";
-      sha256 = "1znggjivd0yj9sgky9zdhn3hcxmlvfcgmgw2a5rxnmqs6v3vcv0j";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.3.20/kotlin-test-1.3.20" =
-  {
-    host = repositories.apache;
-    path =
-      "org/jetbrains/kotlin/kotlin-test/1.3.20/kotlin-test-1.3.20";
-    type = "jar";
-    pom = {
-      sha1 = "458eca280acbc16bcd4230f5e3448fff41dad94e";
-      sha256 = "1gv8lf53ni3f5gkwyk4jz4rlchv60vwwrgkncvd29irf00r20y6k";
-    };
-    jar = {
-      sha1 = "2c2cfc5de4d1311634e49f92f1c913565f3ccb06";
-      sha256 = "1hbnri15j8n7z4rmiswk7y3b4i8pmhzv2m5wy3dqylgz6ai01fc2";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.3.50/kotlin-test-1.3.50" =
-  {
-    host = repositories.apache;
-    path =
-      "org/jetbrains/kotlin/kotlin-test/1.3.50/kotlin-test-1.3.50";
-    type = "jar";
-    pom = {
-      sha1 = "66733c42e2946f56c72b656395ba418a69f8a26a";
-      sha256 = "19p2ckskwmqlwlw19pn92yll9w1x3h04crmy10644dqqz013gv1m";
-    };
-    jar = {
-      sha1 = "92a66b17cc20735cfb1438512210b643813f7516";
-      sha256 = "059h0wcangm02h94fwzr8r4lggfggnhaah6ms5w6b9jndwica769";
-    };
-  };
   "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test-annotations-common/1.2.71/kotlin-test-annotations-common-1.2.71" =
   {
     host = repositories.apache;
@@ -23951,6 +23652,66 @@ in {
     jar = {
       sha1 = "683d3cf68b1bf58e0fb4529abd46c796d55fb7cd";
       sha256 = "0amvcsayqbs43fxdvjx54zzbcaqv839xn7q9gl7nmvphjg7wjamw";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.1.3-2/kotlin-test-1.1.3-2" =
+  {
+    host = repositories.apache;
+    path =
+      "org/jetbrains/kotlin/kotlin-test/1.1.3-2/kotlin-test-1.1.3-2";
+    type = "jar";
+    pom = {
+      sha1 = "96225213ea90542b378c04ee34f586f87f702f8d";
+      sha256 = "04mpysmgnmmnslp3d0fzpla27s15xa4arpzwx6gdrplq78pxgd34";
+    };
+    jar = {
+      sha1 = "bfde381a4485e78d3542ec46f231c5e0e22aea28";
+      sha256 = "06gnp62a9fg5xfvrczx2vzqmp3k84jh2z5j9nzsl6nhs1aw7dg86";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.2.71/kotlin-test-1.2.71" =
+  {
+    host = repositories.apache;
+    path =
+      "org/jetbrains/kotlin/kotlin-test/1.2.71/kotlin-test-1.2.71";
+    type = "jar";
+    pom = {
+      sha1 = "cbae5fabd2a7cb73594f12c2b9207f5a40364639";
+      sha256 = "13ccxq0mj4z4hd365vyxijxpl5agrh6rincvqccsfslkpgfrf6gl";
+    };
+    jar = {
+      sha1 = "71f526c39299e20d2d225898d3a843da1dcfb4dc";
+      sha256 = "1znggjivd0yj9sgky9zdhn3hcxmlvfcgmgw2a5rxnmqs6v3vcv0j";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.3.20/kotlin-test-1.3.20" =
+  {
+    host = repositories.apache;
+    path =
+      "org/jetbrains/kotlin/kotlin-test/1.3.20/kotlin-test-1.3.20";
+    type = "jar";
+    pom = {
+      sha1 = "458eca280acbc16bcd4230f5e3448fff41dad94e";
+      sha256 = "1gv8lf53ni3f5gkwyk4jz4rlchv60vwwrgkncvd29irf00r20y6k";
+    };
+    jar = {
+      sha1 = "2c2cfc5de4d1311634e49f92f1c913565f3ccb06";
+      sha256 = "1hbnri15j8n7z4rmiswk7y3b4i8pmhzv2m5wy3dqylgz6ai01fc2";
+    };
+  };
+  "https://repo.maven.apache.org/maven2/org/jetbrains/kotlin/kotlin-test/1.3.50/kotlin-test-1.3.50" =
+  {
+    host = repositories.apache;
+    path =
+      "org/jetbrains/kotlin/kotlin-test/1.3.50/kotlin-test-1.3.50";
+    type = "jar";
+    pom = {
+      sha1 = "66733c42e2946f56c72b656395ba418a69f8a26a";
+      sha256 = "19p2ckskwmqlwlw19pn92yll9w1x3h04crmy10644dqqz013gv1m";
+    };
+    jar = {
+      sha1 = "92a66b17cc20735cfb1438512210b643813f7516";
+      sha256 = "059h0wcangm02h94fwzr8r4lggfggnhaah6ms5w6b9jndwica769";
     };
   };
   "https://repo.maven.apache.org/maven2/org/jetbrains/kotlinx/kotlinx-coroutines-core-common/1.1.1/kotlinx-coroutines-core-common-1.1.1" =
@@ -24266,21 +24027,6 @@ in {
     jar = {
       sha1 = "fb453edc6b32900250a6fd665f76313780265fec";
       sha256 = "0gl4axhzr3bfb8blyq31b5wja3hksxn897z8zf90qrr49calfq33";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/org/khronos/opengl-api/gl1.1-android-2.1_r1/opengl-api-gl1.1-android-2.1_r1" =
-  {
-    host = repositories.apache;
-    path =
-      "org/khronos/opengl-api/gl1.1-android-2.1_r1/opengl-api-gl1.1-android-2.1_r1";
-    type = "jar";
-    pom = {
-      sha1 = "a59312565e85b5ab9ed116bb0270a177d2c05b78";
-      sha256 = "16jmg68v81a2m0dcm9xhk39dswjzzr2nbalmfirjv56pnfxi3amc";
-    };
-    jar = {
-      sha1 = "8827d279add29cf9115820671e7879de7bf80390";
-      sha256 = "0ic1fqsi9gmlcz3a5vnv97p2qf21yy4cslxlk69fy1pp40r3j26c";
     };
   };
   "https://repo.maven.apache.org/maven2/org/littleshoot/littleproxy/1.1.0-beta2/littleproxy-1.1.0-beta2" =
@@ -26644,21 +26390,6 @@ in {
       sha256 = "0p7djinc6g85q3y4gxb58xfwjibg79mh2j7a9g34m0awr2kl1rba";
     };
   };
-  "https://repo.maven.apache.org/maven2/xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2" =
-  {
-    host = repositories.apache;
-    path =
-      "xerces/xmlParserAPIs/2.6.2/xmlParserAPIs-2.6.2";
-    type = "jar";
-    pom = {
-      sha1 = "063f9f93725652dd11394c90dc746fb95b982a0d";
-      sha256 = "1h92md3jsjyryn9yk1cfh00mk7gh4wzvxd5czrw9zkrw3wfr3xdp";
-    };
-    jar = {
-      sha1 = "065acede1e5305bd2b92213d7b5761328c6f4fd9";
-      sha256 = "1rfpx609jnjppgkld1h4cc3wvx0xxd0i4qrjj9zccwxa3yz6fa0w";
-    };
-  };
   "https://repo.maven.apache.org/maven2/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2" =
   {
     host = repositories.apache;
@@ -26732,21 +26463,6 @@ in {
     jar = {
       sha1 = "2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa  xmlpull-1.1.3.1.jar";
       sha256 = "0qyb4j9r5f0b2br5k33rca6j0nvsbb8p1vf0d6xiq1qn47k8xq1l";
-    };
-  };
-  "https://repo.maven.apache.org/maven2/xpp3/xpp3/1.1.4c/xpp3-1.1.4c" =
-  {
-    host = repositories.apache;
-    path =
-      "xpp3/xpp3/1.1.4c/xpp3-1.1.4c";
-    type = "jar";
-    pom = {
-      sha1 = "ab2e7aa30b06dc1a01218d17650e9966f65557da  xpp3-1.1.4c.pom";
-      sha256 = "0g8a1j151h1ijyfkm3kc0xfvbqq1y1l04r983v2vdy60blpn4m2f";
-    };
-    jar = {
-      sha1 = "9b988ea84b9e4e9f1874e390ce099b8ac12cfff5  /home/maven/repository-staging/to-ibiblio/maven2/xpp3/xpp3/1.1.4c/xpp3-1.1.4c.jar";
-      sha256 = "1f9ifnxxj295xb1494jycbfm76476xm5l52p7608gf0v91d3jh83";
     };
   };
   "https://repo.maven.apache.org/maven2/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c" =
