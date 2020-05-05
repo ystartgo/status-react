@@ -1,6 +1,7 @@
 (ns status-im.ui.screens.desktop.views
   (:require-macros [status-im.utils.views :as views])
   (:require [status-im.ui.screens.desktop.main.views :as main.views]
+            [status-im.ui.screens.home.views :as home.views]
             [status-im.ui.components.react :as react]
             [status-im.ui.screens.intro.views :as intro.views]
             [status-im.ui.screens.group.views :refer [contact-toggle-list
@@ -28,9 +29,14 @@
                      (.setValue rn-dependencies/desktop-config "desktop-alpha-warning-shown-for-version" version)
                      (utils/show-popup nil (i18n/label :desktop-alpha-release-warning)))))}
 
-    (let [view-id (or view-id :intro) ;; TODO some default value
-          component (case view-id
+    (let [component (case view-id
                       :intro intro.views/intro
+                      :create-multiaccount-generate-key intro.views/wizard-generate-key
+                      :create-multiaccount-choose-key intro.views/wizard-choose-key
+                      :create-multiaccount-create-code intro.views/wizard-create-code
+                      :create-multiaccount-confirm-code intro.views/wizard-confirm-code
+                      :recover-multiaccount-enter-phrase intro.views/wizard-enter-phrase
+                      :welcome home.views/welcome
                       :multiaccounts multiaccounts.views/multiaccounts
                       :new-group  new-group
                       :contact-toggle-list contact-toggle-list

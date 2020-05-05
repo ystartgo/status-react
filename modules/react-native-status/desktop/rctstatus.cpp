@@ -636,7 +636,7 @@ void RCTStatus::chaosModeUpdate(bool on, double callbackId) {
 QString RCTStatus::generateAlias(QString publicKey) {
   Q_D(RCTStatus);
   qCDebug(RCTSTATUS) << "::generateAlias call";
-  return "";
+  return "TODO: Set return value in /modules/react-native-status/desktop/rctstatus.cpp";
 }
 
 void RCTStatus::generateAliasAsync(QString publicKey, double callbackId) {

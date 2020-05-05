@@ -350,7 +350,7 @@
                   (assoc-in [:hardwallet :pin :login] []))})
        (if keycard-account?
          (navigation/navigate-to-cofx :intro-stack {:screen :keycard-login-pin})
-         (navigation/navigate-to-cofx :intro-stack {:screen :login}))))))
+         (navigation/navigate-to-cofx :intro {:screen :login}))))))
 
 (fx/defn get-credentials
   [{:keys [db] :as cofx} key-uid]

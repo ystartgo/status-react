@@ -7,7 +7,8 @@
             [status-im.ui.screens.bootnodes-settings.views :as bootnodes]
             [status-im.ui.components.react :as react]
             [status-im.ui.screens.offline-messaging-settings.edit-mailserver.views :as edit-mailserver]
-            [re-frame.core :as re-frame]))
+            [re-frame.core :as re-frame]
+            [taoensso.timbre :as log]))
 
 (views/defview status-view []
   [react/view {:style {:flex 1 :background-color "#eef2f5" :align-items :center :justify-content :center}}

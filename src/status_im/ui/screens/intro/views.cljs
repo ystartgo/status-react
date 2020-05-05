@@ -22,7 +22,8 @@
             [status-im.constants :as constants]
             [status-im.utils.config :as config]
             [status-im.utils.platform :as platform]
-            [status-im.ui.components.topbar :as topbar]))
+            [status-im.ui.components.topbar :as topbar]
+            [status-im.multiaccounts.recover.core :as multiaccounts.recover]))
 
 (defn dots-selector [{:keys [on-press n selected color]}]
   [react/view {:style (styles/dot-selector n)}
@@ -95,7 +96,7 @@
                                  :on-press     #(re-frame/dispatch [:multiaccounts.create.ui/intro-wizard])
                                  :label        (i18n/label :t/get-started)}]
       [components.common/button {:button-style (assoc styles/bottom-button :margin-bottom 24)
-                                 :on-press    #(re-frame/dispatch [:multiaccounts.recover.ui/recover-multiaccount-button-pressed])
+                                 :on-press    #(re-frame/dispatch [::multiaccounts.recover/enter-phrase-pressed])
                                  :label       (i18n/label :t/access-key)
                                  :background? false}]
       [react/nested-text
@@ -146,7 +147,7 @@
                                                  :font-weight "500")
                          :number-of-lines 2
                          :ellipsize-mode  :middle}
-             (gfy/generate-gfy public-key)]
+             (str "TODO: Set return value in /modules/react-native-status/desktop/rctstatus.cpp" (gfy/generate-gfy public-key))]
             [react/text {:style (assoc styles/wizard-text
                                        :text-align :left
                                        :line-height 22

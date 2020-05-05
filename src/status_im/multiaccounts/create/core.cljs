@@ -102,6 +102,13 @@
             (prepare-intro-wizard)
             (navigation/navigate-to-cofx :create-multiaccount-generate-key nil)))
 
+(fx/defn home
+  {:events [:multiaccounts.create.ui/home]}
+  [{:keys [db] :as cofx}]
+  (fx/merge cofx
+            {:db (update db :hardwallet dissoc :flow)}
+            (navigation/navigate-to-cofx :home nil)))
+
 (fx/defn get-new-key
   {:events [:multiaccounts.create.ui/get-new-key]}
   [{:keys [db] :as cofx}]

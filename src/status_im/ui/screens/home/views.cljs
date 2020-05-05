@@ -41,7 +41,7 @@
     [react/i18n-text {:style styles/welcome-text-description
                       :key   :welcome-to-status-description}]]
    [react/view {:align-items :center :margin-bottom 50}
-    [components.common/button {:on-press            #(re-frame/dispatch [:navigate-reset :tabs])
+    [components.common/button {:on-press            #(re-frame/dispatch [:multiaccounts.create.ui/home])
                                :accessibility-label :lets-go-button
                                :label               (i18n/label :t/lets-go)}]]])
 
