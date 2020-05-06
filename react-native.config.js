@@ -1,5 +1,4 @@
 module.exports = {
-    assets: ["./resources/fonts/"],
     dependencies: {
         'react-native-config': {
             platforms: {
