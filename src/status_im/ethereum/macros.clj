@@ -2,6 +2,7 @@
   (:require [clojure.string :as string]
             [clojure.java.io :as io]))
 
+;; FIXME: After rebase oin tokens pr use the RESOURCES_DIR
 (defn token-icon-path
   [network symbol]
   (let [s     (str "../resources/images/tokens/" (name network) "/" (name symbol) ".png")
@@ -16,7 +17,7 @@
            (or
             @~image
             (reset! ~image
-                    (js/require "../resources/images/tokens/default-token.png"))))))))
+                    (js/require (str js/RESOURCES_DIR "/images/tokens/default-token.png")))))))))
 
 (defn- token->icon [network {:keys [icon symbol]}]
   ;; Tokens can define their own icons.
@@ -45,7 +46,7 @@
            (or
             @~image
             (reset! ~image
-                    (js/require "../resources/images/tokens/default-native.png"))))))))
+                    (js/require (str js/RESOURCES_DIR "/images/tokens/default-native.png")))))))))
 
 (defmacro resolve-native-currency-icons
   "In react-native arguments to require must be static strings.

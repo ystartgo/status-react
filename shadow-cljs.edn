@@ -31,67 +31,72 @@
         :host "0.0.0.0"}
 
  :builds {:android
-          {:target     :react-native
-           :output-dir "app"
-           :init-fn    status-im.android.core/init
-           :dev        {:devtools         {:after-load status-im.reloader/reload
-                                           :preloads   [re-frisk-remote.preload]}
-                        :compiler-options {:closure-defines
-                                           {re-frame.trace/trace-enabled? true}}
-                        ;; if you want to use a real device, set your local ip
-                        ;; in the SHADOW_HOST env variable to make sure that
-                        ;; it will use the right interface
-                        :local-ip         #shadow/env "SHADOW_HOST"}
-           :chunks     {:fleets status-im.default-fleet/default-fleets}
-           :release    {:compiler-options {:output-feature-set :es6
-                                           ;;disable for android build as there
-                                           ;;is an intermittent warning with deftype
-                                           :warnings-as-errors false
-                                           :infer-externs      :auto
-                                           :static-fns         true
-                                           :fn-invoke-direct   true
-                                           :optimizations      :advanced
-                                           :js-options         {:js-provider :closure}}}}
+          {:target          :react-native
+           :output-dir      "app"
+           :init-fn         status-im.android.core/init
+           :dev             {:devtools         {:after-load status-im.reloader/reload
+                                                :preloads   [re-frisk-remote.preload]}
+                             :compiler-options {:closure-defines
+                                                {re-frame.trace/trace-enabled? true}}
+                             ;; if you want to use a real device, set your local ip
+                             ;; in the SHADOW_HOST env variable to make sure that
+                             ;; it will use the right interface
+                             :local-ip         #shadow/env "SHADOW_HOST"}
+           ;; Resources dir relative to output dir
+           :closure-defines {RESOURCES_DIR "../resources"}
+           :chunks          {:fleets status-im.default-fleet/default-fleets}
+           :release         {:compiler-options {:output-feature-set :es6
+                                                ;;disable for android build as there
+                                                ;;is an intermittent warning with deftype
+                                                :warnings-as-errors false
+                                                :infer-externs      :auto
+                                                :static-fns         true
+                                                :fn-invoke-direct   true
+                                                :optimizations      :advanced
+                                                :js-options         {:js-provider :closure}}}}
           :ios
-          {:target     :react-native
-           :output-dir "app"
-           :init-fn    status-im.ios.core/init
-           :dev        {:devtools         {:after-load status-im.reloader/reload
-                                           :preloads   [re-frisk-remote.preload]}
-                        :compiler-options {:closure-defines
-                                           {re-frame.trace/trace-enabled? true}}
-                        ;; if you want to use a real device, set your local ip
-                        ;; in the SHADOW_HOST env variable to make sure that
-                        ;; it will use the right interface
-                        :local-ip         #shadow/env "SHADOW_HOST"}
-           :chunks     {:fleets status-im.default-fleet/default-fleets}
-           :release    {:compiler-options {:output-feature-set :es6
-                                           :warnings-as-errors true
-                                           :infer-externs      :auto
-                                           :static-fns         true
-                                           :fn-invoke-direct   true
-                                           :optimizations      :advanced
-                                           :js-options         {:js-provider :closure}}}}
+          {:target          :react-native
+           :output-dir      "app"
+           :init-fn         status-im.ios.core/init
+           :dev             {:devtools         {:after-load status-im.reloader/reload
+                                                :preloads   [re-frisk-remote.preload]}
+                             :compiler-options {:closure-defines
+                                                {re-frame.trace/trace-enabled? true}}
+                             ;; if you want to use a real device, set your local ip
+                             ;; in the SHADOW_HOST env variable to make sure that
+                             ;; it will use the right interface
+                             :local-ip         #shadow/env "SHADOW_HOST"}
+           ;; Resources dir relative to output dir
+           :closure-defines {RESOURCES_DIR "../resources"}
+           :chunks          {:fleets status-im.default-fleet/default-fleets}
+           :release         {:compiler-options {:output-feature-set :es6
+                                                :warnings-as-errors true
+                                                :infer-externs      :auto
+                                                :static-fns         true
+                                                :fn-invoke-direct   true
+                                                :optimizations      :advanced
+                                                :js-options         {:js-provider :closure}}}}
           :quo
-          {:target     :react-native
-           :output-dir "./react-native-quo/app"
-           :output-to  "./react-native-quo/index.js"
-           :init-fn    quo.previews.main/init
-           :dev        {:devtools {:autoload true}
-                        ;; in the SHADOW_HOST env variable to make sure that
-                        ;; if you want to use a real device, set your local ip
-                        ;; it will use the right interface
-                        :local-ip #shadow/env "SHADOW_HOST"}
-           :js-options {:js-package-dirs ["react-native-quo/node_modules"]}
-           :release    {:compiler-options {:output-feature-set :es6
-                                           ;;disable for android build as there
-                                           ;;is an intermittent warning with deftype
-                                           :warnings-as-errors false
-                                           :infer-externs      :auto
-                                           :static-fns         true
-                                           :fn-invoke-direct   true
-                                           :optimizations      :advanced
-                                           :js-options         {:js-provider :closure}}}}
+          {:target          :react-native
+           :output-dir      "react-native-quo/app"
+           :init-fn         quo.previews.main/init
+           :dev             {:devtools {:autoload true}
+                             ;; in the SHADOW_HOST env variable to make sure that
+                             ;; if you want to use a real device, set your local ip
+                             ;; it will use the right interface
+                             :local-ip #shadow/env "SHADOW_HOST"}
+           ;; Resources dir relative to output dir
+           :closure-defines {RESOURCES_DIR "../../resources"}
+           :js-options      {:js-package-dirs ["react-native-quo/node_modules"]}
+           :release         {:compiler-options {:output-feature-set :es6
+                                                ;;disable for android build as there
+                                                ;;is an intermittent warning with deftype
+                                                :warnings-as-errors false
+                                                :infer-externs      :auto
+                                                :static-fns         true
+                                                :fn-invoke-direct   true
+                                                :optimizations      :advanced
+                                                :js-options         {:js-provider :closure}}}}
           ;; the tests are ran with node, react-native dependencies are mocked
           ;; by using node --require override.js, which uses the node-library
           ;; produced by the target :mocks below and redefines node require
