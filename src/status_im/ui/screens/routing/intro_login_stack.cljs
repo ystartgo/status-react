@@ -10,7 +10,9 @@
             [status-im.ui.screens.hardwallet.authentication-method.views
              :as
              hardwallet.authentication]
-            [status-im.ui.screens.routing.core :as navigation]))
+            [status-im.ui.screens.routing.core :as navigation]
+            [status-im.ui.screens.hardwallet.settings.views :as hardwallet.settings]
+            [status-im.ui.screens.hardwallet.pin.views :as hardwallet.pin]))
 
 (defonce stack (navigation/create-stack))
 
@@ -107,4 +109,12 @@
       {:name      :keycard-unpaired
        :component keycard/unpaired}
       {:name      :not-keycard
-       :component keycard/not-keycard}]]))
+       :component keycard/not-keycard}
+
+      ;; KEYCARD
+      {:name      :keycard-settings
+       :component hardwallet.settings/keycard-settings}
+      {:name      :reset-card
+       :component hardwallet.settings/reset-card}
+      {:name      :enter-pin-settings
+       :component hardwallet.pin/enter-pin}]]))

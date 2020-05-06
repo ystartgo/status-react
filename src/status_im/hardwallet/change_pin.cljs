@@ -83,6 +83,7 @@
                :utils/show-popup {:title   ""
                                   :content (i18n/label :t/pin-changed)}}
               (common/hide-connection-sheet)
+              ;; TODO(redirect to proper screen)
               (if puk-restore?
                 (navigation/navigate-to-cofx :multiaccounts nil)
                 (navigation/navigate-to-cofx :keycard-settings nil))

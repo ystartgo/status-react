@@ -127,18 +127,23 @@
   {:events [:hardwallet.callback/on-unblock-pin-success]}
   [{:keys [db] :as cofx}]
   (let [pairing (common/get-pairing db)]
-    (fx/merge cofx
-              {:hardwallet/get-application-info {:pairing pairing}
-               :db                              (-> db
-                                                    (update-in [:hardwallet :pin] merge {:status       nil
-                                                                                         :enter-step   :original
-                                                                                         :current      [0 0 0 0 0 0]
-                                                                                         :confirmation []
-                                                                                         :puk          []
-                                                                                         :puk-restore? true
-                                                                                         :error-label  nil}))}
-              (common/hide-connection-sheet)
-              (navigation/navigate-to-cofx :enter-pin-settings nil))))
+    (fx/merge
+     cofx
+     {:hardwallet/get-application-info
+      {:pairing pairing}
+
+      :db
+      (-> db
+          (update-in [:hardwallet :pin] merge
+                     {:status       nil
+                      :enter-step   :original
+                      :current      [0 0 0 0 0 0]
+                      :confirmation []
+                      :puk          []
+                      :puk-restore? true
+                      :error-label  nil}))}
+     (common/hide-connection-sheet)
+     (navigation/navigate-to-cofx :enter-pin-settings nil))))
 
 (fx/defn on-unblock-pin-error
   {:events [:hardwallet.callback/on-unblock-pin-error]}
@@ -235,8 +240,13 @@
     (fn [{:keys [db]}]
       (let [puk     (common/vector->string (get-in db [:hardwallet :pin :puk]))
             key-uid (get-in db [:hardwallet :application-info :key-uid])
-            pairing (common/get-pairing db key-uid)]
-        {:db (assoc-in db [:hardwallet :pin :status] :verifying)
+            pairing (common/get-pairing db key-uid)
+            view-id (:view-id db)]
+        (log/debug "unblock-pin"
+                   "view-id" view-id)
+        {:db (-> db
+                 (assoc-in [:hardwallet :pin :status] :verifying)
+                 (assoc-in [:hardwallet :puk :view-id] view-id))
          :hardwallet/unblock-pin
          {:puk     puk
           :new-pin common/default-pin

@@ -10,7 +10,9 @@
             [status-im.ui.screens.wallet.account-settings.views :as account-settings]
             [status-im.ui.screens.wallet.events :as wallet.events]
             [status-im.ui.components.tabbar.styles :as tabbar.styles]
-            [status-im.ui.screens.routing.core :as navigation]))
+            [status-im.ui.screens.routing.core :as navigation]
+            [status-im.ui.screens.hardwallet.settings.views :as hardwallet.settings]
+            [status-im.ui.screens.hardwallet.pin.views :as hardwallet.pin]))
 
 (defonce stack (navigation/create-stack))
 
@@ -41,4 +43,12 @@
     {:name      :wallet-custom-token-details
      :component custom-tokens/custom-token-details}
     {:name      :currency-settings
-     :component currency-settings/currency-settings}]])
+     :component currency-settings/currency-settings}
+    
+    ;; KEYCARD
+    {:name      :keycard-settings
+     :component hardwallet.settings/keycard-settings}
+    {:name      :reset-card
+     :component hardwallet.settings/reset-card}
+    {:name      :enter-pin-settings
+     :component hardwallet.pin/enter-pin}]])
