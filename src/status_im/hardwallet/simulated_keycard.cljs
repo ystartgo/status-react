@@ -27,7 +27,7 @@
          {:free-pairing-slots     5
           :app-version            "2.2"
           :secure-channel-pub-key "04c3071768912a515c00aeab7ceb8a5bfda91d036f4a4e60b7944cee3ca7fb67b6d118e8df1e2480b87fd636c6615253245bbbc93a6a407f155f2c58f76c96ef0e",
-          :instance-uid           "9c3f27ee5dfc39c2b14f4d6d3379cd68"
+          :instance-uid           "1b360b10a9a68b7d494e8f059059f118"
           :paired?                true
           :has-master-key?        true
           :initialized?           true
@@ -145,11 +145,16 @@
              (= pin (get @state :pin)))
     (later #(on-success 3))))
 
-(defn change-pin [_])
-(defn unpair [_])
-(defn delete [_])
-(defn remove-key [_])
-(defn remove-key-with-unpair [_])
+(defn change-pin [args]
+  (log/warn "change-pin not implemented" args))
+(defn unpair [args]
+  (log/warn "unpair not implemented" args))
+(defn delete [args]
+  (log/warn "delete not implemented" args))
+(defn remove-key [args]
+  (log/warn "remove-key not implemented" args))
+(defn remove-key-with-unpair [args]
+  (log/warn "remove-key-with-unpair not implemented" args))
 
 (defn normalize-path [path]
   (if (string/starts-with? path "m/")
@@ -199,8 +204,11 @@
      {:key-uid               (get-in @state [:application-info :key-uid])
       :encryption-public-key (ethereum/sha3 pin)})))
 
-(defn sign [_])
-(defn sign-typed-data [_])
+(defn sign [{:keys [pin original-tx on-success]}]
+  (on-success "123"))
+
+(defn sign-typed-data [args]
+  (log/warn "sign-typed-data not implemented" args))
 
 (defn save-multiaccount-and-login
   [{:keys [multiaccount-data password settings node-config accounts-data]}]
@@ -213,6 +221,10 @@
 
 (defn login [{:keys [multiaccount-data password]}] 
   (status/login multiaccount-data password))
+
+(defn send-transaction-with-signature
+  [{:keys [transaction signature on-completed]}]
+  (status/send-transaction transaction (ethereum/sha3 (:pin @state)) on-completed))
 
 (defrecord SimulatedKeycard []
   keycard/Keycard
@@ -269,4 +281,6 @@
   (keycard/save-multiaccount-and-login [this args]
     (save-multiaccount-and-login args))
   (keycard/login [this args]
-    (login args)))
+    (login args))
+  (keycard/send-transaction-with-signature [this args]
+    (send-transaction-with-signature args)))
