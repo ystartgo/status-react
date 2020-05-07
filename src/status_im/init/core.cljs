@@ -94,4 +94,4 @@
  (fn []
    #_(theme/add-mode-change-listener #(re-frame/dispatch [:system-theme-mode-changed %]))
    #_(when (theme/is-dark-mode)
-     (colors/set-theme :dark))))
+       (colors/set-theme :dark))))

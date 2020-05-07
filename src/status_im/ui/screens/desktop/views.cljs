@@ -15,52 +15,60 @@
             [status-im.i18n :as i18n]
             [status-im.react-native.js-dependencies :as rn-dependencies]
             [taoensso.timbre :as log]
-            [status-im.utils.utils :as utils]))
+            [status-im.utils.utils :as utils]
+            [status-im.ui.screens.routing.intro-login-stack :as intro-login-stack]))
 
 (enable-console-print!)
 
 (views/defview main []
   (views/letsubs [view-id [:view-id]
-                  version [:get-app-version]]
-    {:component-did-mount
-     (fn []
-       (.getValue rn-dependencies/desktop-config "desktop-alpha-warning-shown-for-version"
-                  #(when-not (= %1 version)
-                     (.setValue rn-dependencies/desktop-config "desktop-alpha-warning-shown-for-version" version)
-                     (utils/show-popup nil (i18n/label :desktop-alpha-release-warning)))))}
+                  version [:get-app-version]
+                  screen-params [:screen-params]
+                  multiaccounts [:multiaccounts/multiaccounts]
+                  loading [:multiaccounts/loading]]
+    {:component-did-mount (fn []
+                            (.getValue rn-dependencies/desktop-config "desktop-alpha-warning-shown-for-version"
+                                       #(when-not (= %1 version)
+                                          (.setValue rn-dependencies/desktop-config "desktop-alpha-warning-shown-for-version" version)
+                                          (utils/show-popup nil (i18n/label :desktop-alpha-release-warning)))))}
+    (let [view-id        (or view-id :intro-stack) ;; TODO some default value
+          screen-params2 (or screen-params {:intro-stack {:screen :intro}})
+          comp           ((intro-login-stack/intro-stack-desktop view-id screen-params2 loading multiaccounts))
+          component      (case view-id
+                      ;; :intro intro.views/intro
+                      ;; :create-multiaccount-generate-key intro.views/wizard-generate-key
+                      ;; :create-multiaccount-choose-key intro.views/wizard-choose-key
+                      ;; :create-multiaccount-create-code intro.views/wizard-create-code
+                      ;; :create-multiaccount-confirm-code intro.views/wizard-confirm-code
+                      ;; :recover-multiaccount-enter-phrase intro.views/wizard-enter-phrase
+                           :welcome home.views/welcome
+                           :multiaccounts multiaccounts.views/multiaccounts
+                           :new-group  new-group
+                           :contact-toggle-list contact-toggle-list
+                           :group-chat-profile group-chat-profile
+                           :add-participants-toggle-list add-participants-toggle-list
+                           :intro-stack login.views/login
+                      ;; :chat-stack (intro-login-stack/chat-stack-desktop view-id screen-params)
+                      ;; :wallet-stack (intro-login-stack/wallet-stack-desktop view-id screen-params)
 
-    (let [view-id (or view-id :intro) ;; TODO some default value
-          component (case view-id
-                      :intro intro.views/intro
-                      :create-multiaccount-generate-key intro.views/wizard-generate-key
-                      :create-multiaccount-choose-key intro.views/wizard-choose-key
-                      :create-multiaccount-create-code intro.views/wizard-create-code
-                      :create-multiaccount-confirm-code intro.views/wizard-confirm-code
-                      :recover-multiaccount-enter-phrase intro.views/wizard-enter-phrase
-                      :welcome home.views/welcome
-                      :multiaccounts multiaccounts.views/multiaccounts
-                      :new-group  new-group
-                      :contact-toggle-list contact-toggle-list
-                      :group-chat-profile group-chat-profile
-                      :add-participants-toggle-list add-participants-toggle-list
-
-                      (:desktop/new-one-to-one
-                       :desktop/new-group-chat
-                       :desktop/new-public-chat
-                       :advanced-settings
-                       :edit-mailserver
-                       :bootnodes-settings
-                       :edit-bootnode
-                       :about-app
-                       :help-center
-                       :installations
-                       :chat
-                       :home
-                       :qr-code
-                       :chat-profile
-                       :backup-recovery-phrase) main.views/main-views
-                      :login login.views/login
-                      react/view)]
+                           (:desktop/new-one-to-one
+                            :desktop/new-group-chat
+                            :desktop/new-public-chat
+                            :advanced-settings
+                            :edit-mailserver
+                            :bootnodes-settings
+                            :edit-bootnode
+                            :about-app
+                            :help-center
+                            :installations
+                            :chat
+                            :home
+                            :qr-code
+                            :chat-profile
+                            :backup-recovery-phrase) main.views/main-views
+                           :login login.views/login
+                           react/view)]
+      (log/debug ">>>>>>>>>>>>> comp " comp)
       [react/view {:style {:flex 1}}
-       [component]
+       [(or comp component)]
        [main.views/popup-view]])))

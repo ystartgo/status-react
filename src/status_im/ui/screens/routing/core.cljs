@@ -14,7 +14,7 @@
 (defonce bottom-tabs js-dependencies/react-navigation-bottom-tabs)
 
 (def navigation-container nil #_(reagent/adapt-react-class
-                           (oget native "NavigationContainer")))
+                                 (oget native "NavigationContainer")))
 
 (def use-focus-effect nil #_(oget native "useFocusEffect"))
 (def use-callback nil #_(oget js-dependencies/react "useCallback"))
@@ -26,8 +26,8 @@
 (def transition-presets nil #_(oget stack "TransitionPresets"))
 
 (def modal-presentation-ios nil #_(merge (js->clj (oget transition-presets "ModalPresentationIOS"))
-                                   {:gestureEnabled     true
-                                    :cardOverlayEnabled true}))
+                                         {:gestureEnabled     true
+                                          :cardOverlayEnabled true}))
 
 ;; TODO(Ferossgp): Unify with topbar back icon. Maybe dispatch the same event and move the all logic inside the event.
 (defn handle-on-screen-focus
@@ -85,7 +85,7 @@
   (assoc options :component
          (fn [props]
            #_(handle-on-screen-blur
-            (oget props "navigation"))
+              (oget props "navigation"))
            #_(handle-on-screen-focus options)
            (let [props'   (js->clj props :keywordize-keys true)
                  focused? (oget props "navigation" "isFocused")]
@@ -110,11 +110,11 @@
 
 (defn create-stack []
   #_(let [nav-obj (ocall stack "createStackNavigator")]
-    (get-navigator nav-obj)))
+      (get-navigator nav-obj)))
 
 (defn create-bottom-tabs []
   #_(let [nav-obj (ocall bottom-tabs "createBottomTabNavigator")]
-    (get-navigator nav-obj)))
+      (get-navigator nav-obj)))
 
 (def common-actions #_(oget native "CommonActions"))
 (def stack-actions #_(oget native "StackActions"))

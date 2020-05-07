@@ -11,7 +11,8 @@
             [status-im.ui.screens.hardwallet.authentication-method.views
              :as
              hardwallet.authentication]
-            [status-im.ui.screens.routing.core :as navigation]))
+            [status-im.ui.screens.routing.core :as navigation]
+            [taoensso.timbre :as log]))
 
 (defonce stack (navigation/create-stack))
 
@@ -109,3 +110,99 @@
        :component keycard/unpaired}
       {:name      :not-keycard
        :component keycard/not-keycard}]]))
+
+(views/defview intro-stack-desktop [view-id screen-params]
+  (views/letsubs [multiaccounts [:multiaccounts/multiaccounts]
+                  loading [:multiaccounts/loading]]
+    (do (log/debug ">>>>>>>>>>>>>> " view-id " " screen-params " " loading " " multiaccounts)
+        (let [screen     (get-in screen-params [(keyword view-id) :screen])
+              screen-map [(cond
+                            loading
+                            {:name      :progress-start
+                             :component progress/progress}
+
+                            (empty? multiaccounts)
+                            {:name      :intro
+                             :component intro/intro}
+
+                            :else
+                            {:name      :multiaccounts
+                             :component multiaccounts/multiaccounts})
+                          {:name      :progress
+                           :component progress/progress}
+                          {:name      :login
+                           :component login/login}
+                          {:name      :create-multiaccount-generate-key
+                           :component intro/wizard-generate-key}
+                          {:name         :create-multiaccount-choose-key
+                           :back-handler :noop
+                           :component    intro/wizard-choose-key}
+                          {:name         :create-multiaccount-select-key-storage
+                           :back-handler :noop
+                           :component    intro/wizard-select-key-storage}
+                          {:name         :create-multiaccount-create-code
+                           :back-handler :noop
+                           :component    intro/wizard-create-code}
+                          {:name         :create-multiaccount-confirm-code
+                           :back-handler :noop
+                           :component    intro/wizard-confirm-code}
+                          {:name      :recover-multiaccount-enter-phrase
+                           :component intro/wizard-enter-phrase}
+                          {:name         :recover-multiaccount-select-storage
+                           :back-handler :noop
+                           :component    intro/wizard-select-key-storage}
+                          {:name         :recover-multiaccount-enter-password
+                           :back-handler :noop
+                           :component    intro/wizard-create-code}
+                          {:name         :recover-multiaccount-confirm-password
+                           :back-handler :noop
+                           :component    intro/wizard-confirm-code}
+                          {:name         :recover-multiaccount-success
+                           :back-handler :noop
+                           :component    intro/wizard-recovery-success}
+                          {:name         :keycard-onboarding-intro
+                           :back-handler :noop
+                           :component    keycard.onboarding/intro}
+                          {:name         :keycard-onboarding-puk-code
+                           :back-handler :noop
+                           :component    keycard.onboarding/puk-code}
+                          {:name         :keycard-onboarding-pin
+                           :back-handler :noop
+                           :component    keycard.onboarding/pin}
+                          {:name         :keycard-onboarding-recovery-phrase
+                           :back-handler :noop
+                           :component    keycard.onboarding/recovery-phrase}
+                          {:name         :keycard-onboarding-recovery-phrase-confirm-word1
+                           :back-handler :noop
+                           :component    keycard.onboarding/recovery-phrase-confirm-word}
+                          {:name         :keycard-onboarding-recovery-phrase-confirm-word2
+                           :back-handler :noop
+                           :component    keycard.onboarding/recovery-phrase-confirm-word}
+                          {:name         :keycard-recovery-intro
+                           :back-handler :noop
+                           :component    keycard.recovery/intro}
+                          {:name         :keycard-recovery-pair
+                           :back-handler :noop
+                           :component    keycard.recovery/pair}
+                          {:name         :keycard-recovery-success
+                           :back-handler :noop
+                           :component    keycard.recovery/success}
+                          {:name      :keycard-recovery-no-key
+                           :component keycard.recovery/no-key}
+                          {:name      :keycard-recovery-pin
+                           :component keycard.recovery/pin}
+                          {:name      :hardwallet-authentication-method
+                           :component hardwallet.authentication/hardwallet-authentication-method}
+                          {:name      :keycard-login-pin
+                           :component keycard/login-pin}
+                          {:name      :keycard-blank
+                           :component keycard/blank}
+                          {:name      :keycard-wrong
+                           :component keycard/wrong}
+                          {:name      :keycard-unpaired
+                           :component keycard/unpaired}
+                          {:name      :not-keycard
+                           :component keycard/not-keycard}]]
+          (log/debug ">>>>>>>>>>> screen " screen)
+          (log/debug ">>>>>>>>>>> result " (filterv #(= (:name %)  (or screen view-id)) screen-map))
+          (:component (first (filterv #(= (:name %) (or screen view-id)) screen-map)))))))
