@@ -22,7 +22,8 @@
             [status-im.utils.utils :as utils]
             [status-im.utils.platform :as platform]
             [status-im.ui.components.bottom-sheet.core :as bottom-sheet]
-            [status-im.constants :as const]))
+            [status-im.constants :as const]
+            [status-im.utils.config :as config]))
 
 (def step-kw-to-num
   {:generate-key         1
@@ -40,12 +41,13 @@
       (inverted (dec (step-kw-to-num step))))))
 
 (defn inc-step [step]
-  (let [inverted  (map-invert step-kw-to-num)]
+  (let [inverted (map-invert step-kw-to-num)]
     (if (and (= step :choose-key)
-             (or (not platform/android?)
-                 (not (nfc/nfc-supported?))))
-      :create-code
-      (inverted (inc (step-kw-to-num step))))))
+             (and (or platform/android?
+                      config/keycard-test-menu-enabled?)
+                  (nfc/nfc-supported?)))
+      (inverted (inc (step-kw-to-num step)))
+      :create-code)))
 
 ;; multiaccounts create module
 (defn get-selected-multiaccount [{:keys [db]}]

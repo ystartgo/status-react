@@ -182,24 +182,26 @@
          (error-object->map response)]))})))
 
 (defn unblock-pin [args]
-  (log/info "[keycard] unblock-pin")
+  (log/info "[keycard] unblock-pin" args)
   (keycard/unblock-pin
    card
    (merge
     args
     {:on-success
      (fn [response]
-       (log/info "[keycard response succ] unblock-pin")
+       (log/info "[keycard response succ] unblock-pin"
+                 (js->clj response))
        (re-frame/dispatch
         [:hardwallet.callback/on-unblock-pin-success response]))
      :on-failure
      (fn [response]
-       (log/info "[keycard response fail] unblock-pin")
+       (log/info "[keycard response fail] unblock-pin"
+                 (js->clj response))
        (re-frame/dispatch [:hardwallet.callback/on-unblock-pin-error
                            (error-object->map response)]))})))
 
 (defn verify-pin [args]
-  (log/info "[keycard] verify-pin")
+  (log/info "[keycard] verify-pin" args)
   (keycard/verify-pin
    card
    (merge
@@ -217,19 +219,19 @@
          (error-object->map response)]))})))
 
 (defn change-pin [args]
-  (log/info "[keycard] change-pin")
+  (log/info "[keycard] change-pin" args)
   (keycard/change-pin
    card
    (merge
     args
     {:on-success
      (fn [response]
-       (log/info "[keycard response succ] change-pin")
+       (log/info "[keycard response succ] change-pin" (js->clj response))
        (re-frame/dispatch
         [:hardwallet.callback/on-change-pin-success response]))
      :on-failure
      (fn [response]
-       (log/info "[keycard response fail] change-pin")
+       (log/info "[keycard response fail] change-pin" (error-object->map response))
        (re-frame/dispatch
         [:hardwallet.callback/on-change-pin-error
          (error-object->map response)]))})))
@@ -303,19 +305,19 @@
                            (error-object->map response)]))})))
 
 (defn export-key [args]
-  (log/info "[keycard] export-key")
+  (log/info "[keycard] export-key" args)
   (keycard/export-key
    card
    (merge
     args
     {:on-success
      (fn [response]
-       (log/info "[keycard response succ] export-key")
+       (log/info "[keycard response succ] export-key" (js->clj response))
        (re-frame/dispatch [:hardwallet.callback/on-export-key-success
                            response]))
      :on-failure
      (fn [response]
-       (log/info "[keycard response fail] export-key")
+       (log/info "[keycard response fail] export-key" (error-object->map response))
        (re-frame/dispatch [:hardwallet.callback/on-export-key-error
                            (error-object->map response)]))})))
 

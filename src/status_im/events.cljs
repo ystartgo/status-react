@@ -1028,6 +1028,7 @@
 (handlers/register-handler-fx
  :bottom-sheet/show-sheet
  (fn [cofx [_ view options]]
+   (log/debug :bottom-sheet/show-sheet view options)
    (bottom-sheet/show-bottom-sheet
     cofx
     {:view    view

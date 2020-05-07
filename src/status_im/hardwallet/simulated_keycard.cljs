@@ -6,7 +6,10 @@
             [status-im.ethereum.core :as ethereum]
             [status-im.native-module.core :as status]
             [status-im.utils.types :as types]
-            [re-frame.db :as re-frame.db]))
+            [re-frame.db :as re-frame.db]
+            [re-frame.core :as re-frame]
+            [status-im.i18n :as i18n]
+            [clojure.string :as string]))
 
 (def initial-state
   {:card-connected?  false
@@ -80,7 +83,7 @@
 (defn install-applet [_])
 (defn install-cash-applet [_])
 
-(def kk1-password "6d9ZHjn94kFP4bPm")
+(def kk1-password "000000")
 
 (defn init-card [{:keys [pin on-success]}]
   (swap! state assoc :application-info
@@ -93,7 +96,7 @@
   (swap! state assoc :pin pin)
   (later
    #(on-success {:password kk1-password
-                 :puk       "320612366918"
+                 :puk      "000000000000"
                  :pin       pin})))
 
 (defn install-applet-and-init-card [_])
@@ -110,9 +113,10 @@
              (= pairing kk1-pair))
     (let [{:keys [id address public-key derived key-uid]}
           multiaccount
-          whisper (get derived constants/path-whisper-keyword)
-          wallet  (get derived constants/path-default-wallet-keyword)
-          password (ethereum/sha3 pin)]
+          whisper     (get derived constants/path-whisper-keyword)
+          wallet      (get derived constants/path-default-wallet-keyword)
+          wallet-root (get derived constants/path-wallet-root-keyword)
+          password    (ethereum/sha3 pin)]
       (status/multiaccount-store-derived
        id
        [constants/path-wallet-root
@@ -126,8 +130,8 @@
           :address                address
           :whisper-public-key     (:public-key whisper)
           :instance-uid           "1b360b10a9a68b7d494e8f059059f118"
-          :wallet-root-public-key "0463187f5c917eef481e04af704c14e57a9e8596516f0ec10a4556561ad49b5aa249976ec545d37d04f4d4c7d1c0d9a2141dc61e458b09631d25fa7858c6323ea3"
-          :wallet-root-address    "e034a084d2282e265f83e3fdfa48b42c3d53312a"
+          :wallet-root-public-key (:public-key wallet-root)
+          :wallet-root-address    (:address wallet-root)
           :whisper-address        (:address whisper)
           :public-key             public-key
           :whisper-private-key    "34bc7d0c258c4f2ac1dac4fd6c55c9478bac1f4a9d8b9f1152c8551ab7187b43"
@@ -146,9 +150,49 @@
 (defn delete [_])
 (defn remove-key [_])
 (defn remove-key-with-unpair [_])
-(defn export-key [_])
+
+(defn normalize-path [path]
+  (if (string/starts-with? path "m/")
+    (str constants/path-wallet-root
+         "/" (last (string/split path "/")))
+    path))
+
+(defn export-key [{:keys [pin on-success on-failure]}]
+  (let [wallet-root-address (get-in
+                             @re-frame.db/app-db
+                             [:multiaccount :wallet-root-address])
+        accounts            (get @re-frame.db/app-db :multiaccount/accounts)
+        hashed-password     (ethereum/sha3 pin)
+        path-num            (inc (get-in @re-frame.db/app-db [:multiaccount :latest-derived-path]))
+        path                (str "m/" path-num)]
+    (status/multiaccount-load-account
+     wallet-root-address
+     hashed-password
+     (fn [value]
+       (let [{:keys [id error]} (types/json->clj value)]
+         (if error
+           (re-frame/dispatch [::new-account-error :password-error error])
+           (status/multiaccount-derive-addresses
+            id
+            [path]
+            (fn [derived]
+              (let [derived-address (get-in (types/json->clj derived) [(keyword path) :address])]
+                (if (some #(= derived-address (get % :address)) accounts)
+                  (re-frame/dispatch [::new-account-error :account-error (i18n/label :t/account-exists-title)])
+                  (status/multiaccount-store-derived
+                   id
+                   [path]
+                   hashed-password
+                   (fn [result]
+                     (let [{:keys [error] :as result}  (types/json->clj result)
+                           {:keys [publicKey]} (get result (keyword path))]
+                       (if error
+                         (on-failure error)
+                         (on-success publicKey)))))))))))))))
+
 (defn unpair-and-delete [_])
 (defn get-keys [{:keys [on-success pin]}]
+  (swap! state assoc :pin pin)
   ;;TODO(rasom): verify password before callback
   (later
    #(on-success
@@ -167,7 +211,7 @@
    node-config
    (types/clj->json accounts-data)))
 
-(defn login [{:keys [multiaccount-data password]}]
+(defn login [{:keys [multiaccount-data password]}] 
   (status/login multiaccount-data password))
 
 (defrecord SimulatedKeycard []

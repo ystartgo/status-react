@@ -82,7 +82,7 @@
    derive accounts from it, because saving an account flushes the loaded keys
    from memory"
   [address hashed-password callback]
-  (log/debug "[native-module] multiaccount-load-account")
+  (log/debug "[native-module] multiaccount-load-account" address hashed-password)
   (.multiAccountLoadAccount ^js (status)
                             (types/clj->json {:address address
                                               :password hashed-password})
