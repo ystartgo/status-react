@@ -4,10 +4,10 @@
             [status-im.ui.components.colors :as colors]
             [status-im.ui.components.react :as react]
             [status-im.ui.components.text-input.view :as text-input]
-            [status-im.ui.components.button :as button]
+            [status-im.ui.components.toolbar :as toolbar]
+            [quo.core :as quo]
             [clojure.string :as string]
             [status-im.i18n :as i18n]
-            [status-im.ui.components.list-item.views :as list-item]
             [status-im.ui.components.topbar :as topbar]))
 
 (def debounce-timers (atom {}))
@@ -82,22 +82,20 @@
                            (wallet.utils/format-amount balance decimals))
           :editable      false
           :placeholder   (i18n/label :t/no-tokens-found)}]]
-     [react/view {:style {:height 1 :background-color colors/gray-lighter}}]
-     [react/view {:flex-direction    :row
-                  :margin-horizontal 12
-                  :margin-vertical   15
-                  :align-items       :center}
 
-      [react/view {:style {:flex 1}}]
-      [button/button
-       {:type      :next
-        :label     :t/add
-        :disabled? (boolean
+     [toolbar/toolbar
+      {:show-border? true
+       :right
+       [quo/button
+        {:type     :secondary
+         :after    :main-icon/next
+         :disabled (boolean
                     (or in-progress?
                         error error-name error-symbol
                         (string/blank? contract) (string/blank? name)
                         (string/blank? symbol) (string/blank? decimals)))
-        :on-press  #(re-frame/dispatch [:wallet.custom-token.ui/add-pressed])}]]]))
+         :on-press #(re-frame/dispatch [:wallet.custom-token.ui/add-pressed])}
+        (i18n/label :t/add)]}]]))
 
 (defview custom-token-details []
   (letsubs [{:keys [address name symbol decimals custom?] :as token}
@@ -105,35 +103,35 @@
     [react/keyboard-avoiding-view {:flex 1 :background-color colors/white}
      [topbar/topbar {:title name}]
      [react/scroll-view {:keyboard-should-persist-taps :handled
-                         :style {:flex 1 :margin-top 8}}
+                         :style                        {:flex 1 :margin-top 8}}
       [react/view {:padding-horizontal 16}
        [text-input/text-input-with-label
-        {:label          (i18n/label :t/contract-address)
-         :default-value  address
-         :multiline      true
-         :height         78
-         :editable       false}]
+        {:label         (i18n/label :t/contract-address)
+         :default-value address
+         :multiline     true
+         :height        78
+         :editable      false}]
        [react/view {:height 16}]
        [text-input/text-input-with-label
-        {:label          (i18n/label :t/name)
-         :default-value  name
-         :editable       false}]
+        {:label         (i18n/label :t/name)
+         :default-value name
+         :editable      false}]
        [react/view {:height 16}]
        [react/view {:style {:flex-direction :row}}
         [react/view {:flex 1}
          [text-input/text-input-with-label
-          {:label          (i18n/label :t/symbol)
-           :editable       false
-           :default-value  symbol}]]
+          {:label         (i18n/label :t/symbol)
+           :editable      false
+           :default-value symbol}]]
         [react/view {:flex 1 :margin-left 33}
          [text-input/text-input-with-label
-          {:label          (i18n/label :t/decimals)
-           :default-value  (str decimals)
-           :editable       false}]]]]
+          {:label         (i18n/label :t/decimals)
+           :default-value (str decimals)
+           :editable      false}]]]]
       [react/view {:height 24}]
       (when custom?
-        [list-item/list-item
-         {:theme        :action-destructive
-          :title        :t/remove-token
-          :icon         :main-icons/delete
-          :on-press     #(re-frame/dispatch [:wallet.custom-token.ui/remove-pressed token true])}])]]))
+        [quo/list-item
+         {:theme    :negative
+          :title    (i18n/label :t/remove-token)
+          :icon     :main-icons/delete
+          :on-press #(re-frame/dispatch [:wallet.custom-token.ui/remove-pressed token true])}])]]))

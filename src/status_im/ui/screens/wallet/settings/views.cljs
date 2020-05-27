@@ -5,7 +5,7 @@
             [status-im.ui.components.list.views :as list]
             [status-im.ui.components.react :as react]
             [status-im.ui.components.styles :as components.styles]
-            [status-im.ui.components.list-item.views :as list-item]
+            [quo.core :as quo]
             [reagent.core :as reagent]
             [status-im.ui.components.topbar :as topbar]
             [status-im.ui.components.search-input.view :as search-input]
@@ -29,15 +29,15 @@
 (defn custom-token-actions-view [{:keys [custom?] :as token}]
   (fn []
     [react/view
-     [list-item/list-item
-      {:theme    :action
+     [quo/list-item
+      {:theme :accent
        :title    :t/token-details
        :icon     :main-icons/warning
        :on-press #(hide-sheet-and-dispatch
                    [:navigate-to :wallet-custom-token-details token])}]
      (when custom?
-       [list-item/list-item
-        {:theme    :action-destructive
+       [quo/list-item
+        {:theme :negative
          :title    :t/remove-token
          :icon     :main-icons/delete
          :on-press #(hide-sheet-and-dispatch
@@ -50,31 +50,26 @@
     (fn [_ [_ old-token] [_ new-token]]
       (not= (:checked? old-token) (:checked? new-token)))
     :reagent-render
-    (fn [{:keys [symbol name icon color custom? checked?] :as token}]
-      [list/list-item-with-checkbox
-       {:checked?        checked?
-        :on-long-press
-        #(re-frame/dispatch
-          [:bottom-sheet/show-sheet
-           {:content        (custom-token-actions-view token)
-            :content-height (if custom? 128 68)}])
-        :on-value-change
-        #(re-frame/dispatch
-          [:wallet.settings/toggle-visible-token (keyword symbol) %])}
-       [list/item
-        (if icon
-          [list/item-image icon]
-          [chat-icon/custom-icon-view-list name color])
-        [list/item-content
-         [list/item-primary name]
-         [list/item-secondary symbol]]]])}))
+    (fn [{:keys [symbol name icon color checked?] :as token}]
+      [quo/list-item {:active        checked?
+                      :accessory     :checkbox
+                      :icon          (if icon
+                                       [list/item-image icon]
+                                       [chat-icon/custom-icon-view-list name color])
+                      :title         name
+                      :subtitle      symbol
+                      :on-press      #(re-frame/dispatch
+                                       [:wallet.settings/toggle-visible-token (keyword symbol) (not checked?)])
+                      :on-long-press #(re-frame/dispatch
+                                       [:bottom-sheet/show-sheet
+                                        {:content (custom-token-actions-view token)}])}])}))
 
 (defn- render-token-wrapper
   [token]
   [render-token token])
 
 (defview manage-assets []
-  (letsubs [{search-filter :search-filter
+  (letsubs [{search-filter                           :search-filter
              {custom-tokens true default-tokens nil} :tokens} [:wallet/filtered-grouped-chain-tokens]]
     {:component-will-unmount #(do
                                 (re-frame/dispatch [:search/token-filter-changed nil])
@@ -84,31 +79,31 @@
      [react/view {:style components.styles/flex}
       [search-input/search-input
        {:search-active? search-active?
-        :search-filter search-filter
-        :on-cancel #(re-frame/dispatch [:search/token-filter-changed nil])
-        :on-focus  (fn [search-filter]
-                     (when-not search-filter
-                       (re-frame/dispatch [:search/token-filter-changed ""])))
-        :on-change (fn [text]
-                     (re-frame/dispatch [:search/token-filter-changed text]))}]
+        :search-filter  search-filter
+        :on-cancel      #(re-frame/dispatch [:search/token-filter-changed nil])
+        :on-focus       (fn [search-filter]
+                          (when-not search-filter
+                            (re-frame/dispatch [:search/token-filter-changed ""])))
+        :on-change      (fn [text]
+                          (re-frame/dispatch [:search/token-filter-changed text]))}]
       [list/section-list
        {:header
         [react/view {:margin-top 16}
-         [list-item/list-item
-          {:theme     :action
-           :title     :t/add-custom-token
-           :icon      :main-icons/add
+         [quo/list-item
+          {:theme :accent
+           :title (i18n/label :t/add-custom-token)
+           :icon  :main-icons/add
            :on-press
            #(re-frame/dispatch [:navigate-to :wallet-add-custom-token])}]]
-        :sections (concat
-                   (when (seq custom-tokens)
-                     [{:title (i18n/label :t/custom)
-                       :data  custom-tokens}])
-                   [{:title (i18n/label :t/default)
-                     :data  default-tokens}])
-        :key-fn :address
+        :sections                    (concat
+                                      (when (seq custom-tokens)
+                                        [{:title (i18n/label :t/custom)
+                                          :data  custom-tokens}])
+                                      [{:title (i18n/label :t/default)
+                                        :data  default-tokens}])
+        :key-fn                      :address
         :stickySectionHeadersEnabled false
         :render-section-header-fn
         (fn [{:keys [title]}]
-          [list-item/list-item {:type :section-header :title title}])
-        :render-fn render-token-wrapper}]]]))
+          [quo/list-header title])
+        :render-fn                   render-token-wrapper}]]]))

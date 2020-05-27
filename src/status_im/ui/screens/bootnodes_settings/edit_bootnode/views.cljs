@@ -9,6 +9,7 @@
             [status-im.ui.components.text-input.view :as text-input]
             [status-im.ui.components.tooltip.views :as tooltip]
             [status-im.ui.components.topbar :as topbar]
+            [quo.core :as quo]
             [status-im.ui.screens.bootnodes-settings.edit-bootnode.styles
              :as
              styles]
@@ -51,7 +52,7 @@
            :container           styles/input-container
            :default-value       name
            :on-change-text      #(re-frame/dispatch [:bootnodes.ui/input-changed :name %])
-           :auto-focus           true}]
+           :auto-focus          true}]
          [react/view
           {:flex 1}
           [text-input/text-input-with-label
@@ -73,7 +74,10 @@
          (when id
            [delete-button id])]]
        [toolbar/toolbar
-        {:right {:type      :next
-                 :label     :t/save
-                 :disabled? (not is-valid?)
-                 :on-press  #(re-frame/dispatch [:bootnodes.ui/save-pressed])}}]])))
+        {:right
+         [quo/button
+          {:type      :secondary
+           :after     :main-icon/next
+           :disabled  (not is-valid?)
+           :on-press  #(re-frame/dispatch [:bootnodes.ui/save-pressed])}
+          (i18n/label :t/save)]}]])))
