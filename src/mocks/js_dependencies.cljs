@@ -16,7 +16,7 @@
 
 (def react-native
   (clj->js {:NativeModules {:RNGestureHandlerModule {:Direction (fn [])}
-                            :ReanimatedModule {:configureProps (fn [])}}
+                            :ReanimatedModule       {:configureProps (fn [])}}
 
             :View                     {}
             :FlatList                 {}
@@ -153,8 +153,8 @@
                                                      :Text                    #js {}
                                                      :Extrapolate             #js {:CLAMP nil}
                                                      :Code                    #js {}}
-                                  :Easing       #js {:bezier nil
-                                                     :linear nil}
+                                  :Easing       #js {:bezier (fn [])
+                                                     :linear (fn [])}
                                   :clockRunning nil})
 (def react-native-gesture-handler #js {:default                  #js {}
                                        :State                    #js {:BEGAN        nil
