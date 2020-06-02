@@ -6,7 +6,6 @@
             [status-im.multiaccounts.core :as multiaccounts]
             [status-im.ui.components.chat-icon.screen :as chat-icon]
             [status-im.ui.components.contact.contact :as contact]
-            [status-im.ui.components.icons.vector-icons :as vector-icons]
             [status-im.ui.components.list.views :as list]
             [status-im.ui.components.profile-header.view :as profile-header]
             [status-im.ui.components.react :as react]
@@ -21,7 +20,8 @@
   [react/view
    [quo/list-item
     {:theme               :accent
-     :icon                (multiaccounts/displayed-photo member)
+     :icon                [chat-icon/contact-icon-contacts-tab
+                           (multiaccounts/displayed-photo member)]
      :title               (contact/format-name member)
      :subtitle            (i18n/label :t/view-profile)
      :accessibility-label :view-chat-details-button
@@ -36,7 +36,7 @@
        :title               (i18n/label :t/make-admin)
        :accessibility-label :make-admin
        ;; TODO(Ferossgp): Fix case for make admin icon
-       :icon                :main-icons/make_admin
+       :icon                :main-icons/make-admin
        :on-press            #(chat.sheets/hide-sheet-and-dispatch [:group-chats.ui/make-admin-pressed chat-id (:public-key member)])}])
    (when-not (:admin? member)
      [quo/list-item
@@ -49,21 +49,25 @@
 (defn render-member [chat-id {:keys [public-key] :as member} admin? current-user-identity]
   [quo/list-item
    (merge
-    {:title                (contact/format-name member)
+    {:title               (contact/format-name member)
      :accessibility-label :member-item
-     :icon                [chat-icon/contact-icon-contacts-tab member]
+     :icon                [chat-icon/contact-icon-contacts-tab
+                           (multiaccounts/displayed-photo member)]
      :on-press            (when (not= public-key current-user-identity)
                             #(re-frame/dispatch [(if platform/desktop? :show-profile-desktop :chat.ui/show-profile) public-key]))}
     (when (:admin? member)
-      {:accessories [(i18n/label :t/group-chat-admin)]})
+      {:accessory      :text
+       :accessory-text (i18n/label :t/group-chat-admin)})
     (when (and admin?
                (not (:admin? member))
                (not= public-key current-user-identity))
-      {:accessories [[react/touchable-highlight {:on-press            #(re-frame/dispatch [:bottom-sheet/show-sheet
-                                                                                           {:content (fn []
-                                                                                                       [member-sheet chat-id member admin?])}])
-                                                 :accessibility-label :menu-option}
-                      [vector-icons/icon :main-icons/more {:accessibility-label :options}]]]}))])
+      {:accessory [quo/button {:on-press            #(re-frame/dispatch [:bottom-sheet/show-sheet
+                                                                         {:content (fn []
+                                                                                     [member-sheet chat-id member admin?])}])
+                               :type                :icon
+                               :theme               :icon
+                               :accessibility-label :menu-option}
+                   :main-icons/more]}))])
 
 (defview chat-group-members-view [chat-id admin? current-user-identity]
   (letsubs [members [:contacts/current-chat-contacts]]
