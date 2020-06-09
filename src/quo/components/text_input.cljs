@@ -128,7 +128,8 @@
                        {:accessibility-label accessibility-label}))
       [icons/icon icon (merge {:color (:icon-01 @colors/theme)}
                               icon-opts)]]]))
-
+;; TODO(Ferossgp): Add disabled theme
+;; TODO(Ferossgp): Use theme for keyboardAppearance
 (defn text-input []
   (let [focused   (reagent/atom nil)
         visible   (reagent/atom false)

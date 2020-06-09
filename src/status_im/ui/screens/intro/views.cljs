@@ -223,41 +223,7 @@
                             :max-height 16}}]
        [storage-entry (second storage-types) selected-storage-type]]]]))
 
-(defn password-container [confirm-failure? view-width]
-  (let [horizontal-margin 16]
-    [react/view {:style {:flex 1
-                         :justify-content :space-between
-                         :align-items :center :margin-horizontal horizontal-margin}}
-     [react/view {:style {:justify-content :center :flex 1}}
-      [react/text {:style (assoc styles/wizard-text :color colors/red
-                                 :margin-bottom 16)}
-       (if confirm-failure? (i18n/label :t/password_error1) " ")]
-
-      [react/text-input {:secure-text-entry true
-                         :auto-capitalize :none
-                         :auto-focus true
-                         :accessibility-label :password-input
-                         :text-align :center
-                         :placeholder ""
-                         :style (styles/password-text-input (- view-width (* 2 horizontal-margin)))
-                         :on-change-text #(re-frame/dispatch [:intro-wizard/code-symbol-pressed %])}]]
-     [react/text {:style (assoc styles/wizard-text :margin-bottom 16)} (i18n/label :t/password-description)]]))
-
-(defn create-code [{:keys [confirm-failure? view-width]}]
-  [password-container confirm-failure? view-width])
-
-(defn confirm-code [{:keys [confirm-failure? processing? view-width]}]
-  (if processing?
-    [react/view {:style {:justify-content :center
-                         :align-items :center}}
-     [react/activity-indicator {:size      :large
-                                :animating true}]
-     [react/text {:style {:color      colors/gray
-                          :margin-top 8}}
-      (i18n/label :t/processing)]]
-    [password-container confirm-failure? view-width]))
-
-(defn bottom-bar [{:keys [step weak-password? encrypt-with-password?
+(defn bottom-bar [{:keys [step weak-password?
                           forward-action
                           next-button-disabled?
                           processing? existing-account?]}]
@@ -277,15 +243,6 @@
               :on-press            #(re-frame/dispatch [forward-action])
               :accessibility-label :onboarding-next-button}
              (i18n/label label-kw)]])
-         (and (#{:create-code :confirm-code} step)
-              (not encrypt-with-password?))
-         [react/view {:margin-bottom 16}
-          [quo/button {:style               styles/bottom-button
-                       :accessibility-label :encrypt-with-password-button
-                       :on-press            #(re-frame/dispatch [:intro-wizard/on-encrypt-with-password-pressed])
-                       :type                :secondary}
-           (i18n/label :t/encrypt-with-password)]]
-
          :else
          [toolbar/toolbar
           {:show-border? true
@@ -307,10 +264,8 @@
                         processing? :t/generating-keys
                         :else       :t/this-will-take-few-seconds))])])
 
-(defn top-bar [{:keys [step encrypt-with-password?]}]
-  (let [hide-subtitle? (or (= step :confirm-code)
-                           (= step :enter-phrase)
-                           (and (#{:create-code :confirm-code} step) encrypt-with-password?))]
+(defn top-bar [{:keys [step]}]
+  (let [hide-subtitle? (or (= step :enter-phrase))]
     [react/view {:style {:margin-top   16
                          :margin-horizontal 32}}
 
@@ -322,9 +277,7 @@
              :t/multiaccounts-recover-enter-phrase-title
              (= step :recovery-success)
              :t/keycard-recovery-success-header
-             :else (keyword (str "intro-wizard-title"
-                                 (when  (and (#{:create-code :confirm-code} step) encrypt-with-password?)
-                                   "-alt") (step-kw-to-num step)))))]
+             :else (keyword (str "intro-wizard-title" (step-kw-to-num step)))))]
      (cond (#{:choose-key :select-key-storage} step)
            ; Use nested text for the "Learn more" link
            [react/nested-text {:style (merge styles/wizard-text
@@ -497,40 +450,6 @@
       [select-key-storage wizard-state]
       [bottom-bar {:step :select-key-storage
                    :forward-action (:forward-action wizard-state)}]]]))
-
-(defview wizard-create-code []
-  (letsubs [wizard-state [:intro-wizard/create-code]]
-    [react/keyboard-avoiding-view {:style {:flex 1}}
-     [topbar/topbar
-      {:navigation
-       {:icon    :main-icons/back
-        :accessibility-label :back-button
-        :handler #(re-frame/dispatch [:intro-wizard/navigate-back])}}]
-     [react/view {:style {:flex 1
-                          :justify-content :space-between}}
-      [top-bar {:step :create-code :encrypt-with-password? (:encrypt-with-password? wizard-state)}]
-      [create-code wizard-state]
-      [bottom-bar (merge {:step :create-code
-                          :forward-action (:forward-action wizard-state)}
-                         wizard-state)]]]))
-
-(defview wizard-confirm-code []
-  (letsubs [wizard-state [:intro-wizard/confirm-code]]
-    [react/keyboard-avoiding-view {:style {:flex 1}}
-     [topbar/topbar
-      {:navigation
-       (if (:processing? wizard-state)
-         :none
-         {:icon    :main-icons/back
-          :accessibility-label :back-button
-          :handler #(re-frame/dispatch [:intro-wizard/navigate-back])})}]
-     [react/view {:style {:flex 1
-                          :justify-content :space-between}}
-      [top-bar {:step :confirm-code :encrypt-with-password? (:encrypt-with-password? wizard-state)}]
-      [confirm-code wizard-state]
-      [bottom-bar (merge {:step :confirm-code
-                          :forward-action (:forward-action wizard-state)}
-                         wizard-state)]]]))
 
 (defview wizard-enter-phrase []
   (letsubs [wizard-state [:intro-wizard/enter-phrase]]
