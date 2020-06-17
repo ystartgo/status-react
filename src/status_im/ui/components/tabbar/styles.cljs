@@ -5,7 +5,7 @@
 
 (def tabs-height
   (cond
-    platform/android? 52
+    platform/android? 53                ;1pt border
     platform/ios?     52
     platform/desktop? 36))
 
@@ -49,18 +49,17 @@
    :height tabs-height})
 
 (def tab-container
-  {:flex            1
-   :height          tabs-height
-   :align-items     :center
-   :justify-content :space-between
-   :padding-top     6
-   :padding         4})
+  {:flex           1
+   :height         tabs-height
+   :align-items    :center
+   :padding-top    6
+   :padding-bottom 5})
 
 (def icon-container
-  {:height          24
-   :width           42
-   :align-items     :center
-   :justify-content :center})
+  {:height           24
+   :width            42
+   :align-items      :center
+   :justify-content  :center})
 
 (defn icon [active?]
   {:color  (if active? colors/blue colors/gray)
@@ -69,33 +68,38 @@
 
 (def tab-title-container
   {:align-self      :stretch
-   :height          14
+   :height          13
+   :margin-top      4
    :align-items     :center
    :justify-content :center})
 
 (defn tab-title [active?]
-  {:color     (if active? colors/blue colors/gray)
-   :font-size 11})
+  {:color       (if active? colors/blue colors/gray)
+   :line-height 13
+   :font-size   11})
 
 (defn animated-container [visible? inset]
-  {:flex-direction   :row
-   :shadow-radius    4
-   :shadow-offset    {:width 0 :height -5}
-   :shadow-opacity   0.3
-   :shadow-color     (if (colors/dark?)
-                       "rgba(0, 0, 0, 0.75)"
-                       "rgba(0, 9, 26, 0.12)")
-   :elevation 8
-   :background-color colors/white
-   :position         :absolute
-   :left             0
-   :right            0
-   :height           tabs-height
-   :bottom           inset
-   :transform        [{:translateY
-                       (animation/interpolate visible?
-                                              {:inputRange  [0 1]
-                                               :outputRange [0 tabs-diff]})}]})
+  (merge
+   {:flex-direction   :row
+    :shadow-radius    4
+    :shadow-offset    {:width 0 :height -5}
+    :shadow-opacity   0.3
+    :shadow-color     (if (colors/dark?)
+                        "rgba(0, 0, 0, 0.75)"
+                        "rgba(0, 9, 26, 0.12)")
+    :background-color colors/white
+    :position         :absolute
+    :left             0
+    :right            0
+    :height           tabs-height
+    :bottom           inset
+    :transform        [{:translateY
+                        (animation/interpolate visible?
+                                               {:inputRange  [0 1]
+                                                :outputRange [0 tabs-diff]})}]}
+   (when platform/android?
+     {:border-top-width 1
+      :border-top-color colors/gray-lighter})))
 
 (defn ios-titles-cover [inset]
   {:background-color colors/white
@@ -108,7 +112,6 @@
 
 (defn tabs-wrapper [keyboard visible]
   (merge {:padding-horizontal 8
-          :elevation          8
           :left               0
           :right              0
           :bottom             0
