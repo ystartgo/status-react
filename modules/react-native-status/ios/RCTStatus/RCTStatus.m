@@ -227,13 +227,37 @@ RCT_EXPORT_METHOD(multiAccountGenerateAndDeriveAddresses:(NSString *)json
     callback(@[result]);
 }
 
+//////////////////////////////////////////////////////////////////// addMultiaccountKeystoreDir
+-(NSString *) addMultiaccountKeystoreDir:(NSString *)jsonString {
+    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSMutableDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *rootUrl =[[fileManager
+                      URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask]
+                     lastObject];
+
+    NSURL *commonKeystoreDir = [rootUrl URLByAppendingPathComponent:@"keystore"];
+    NSString *keyUID = [json valueForKey:@"keyUID"];
+    NSURL *multiaccountKeystoreDir = [commonKeystoreDir URLByAppendingPathComponent:keyUID];
+    [json setValue:[multiaccountKeystoreDir absoluteString]
+            forKey:@"keyStoreDir"];
+    [json removeObjectForKey:@"keyUID"];
+    NSString *params = [json bv_jsonStringWithPrettyPrint:NO];
+    
+    NSLog(@"params with keyStoreDir: %@", params);
+    
+    return params;
+}
+    
 //////////////////////////////////////////////////////////////////// MultiAccountStoreAccount
-RCT_EXPORT_METHOD(multiAccountStoreAccount:(NSString *)json
+RCT_EXPORT_METHOD(multiAccountStoreAccount:(NSString *)jsonString
                   callback:(RCTResponseSenderBlock)callback) {
 #if DEBUG
     NSLog(@"MultiAccountStoreAccount() method called");
 #endif
-    NSString *result = StatusgoMultiAccountStoreAccount(json);
+    NSString *params = [self addMultiaccountKeystoreDir:jsonString];
+    NSString *result = StatusgoMultiAccountStoreAccount(params);
     callback(@[result]);
 }
 
@@ -262,7 +286,8 @@ RCT_EXPORT_METHOD(multiAccountStoreDerived:(NSString *)json
 #if DEBUG
     NSLog(@"MultiAccountStoreDerived() method called");
 #endif
-    NSString *result = StatusgoMultiAccountStoreDerivedAccounts(json);
+    NSString *params = [self addMultiaccountKeystoreDir:json];
+    NSString *result = StatusgoMultiAccountStoreDerivedAccounts(params);
     callback(@[result]);
 }
 

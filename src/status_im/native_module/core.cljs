@@ -47,6 +47,9 @@
   [multiaccount-data hashed-password settings config accounts-data]
   (log/debug "[native-module] save-account-and-login"
              "multiaccount-data" multiaccount-data)
+  (log/debug "settings" settings)
+  (log/debug "config" config)
+  (log/debug "accounts-data" accounts-data)
   (clear-web-data)
   (.saveAccountAndLogin
    ^js (status) multiaccount-data hashed-password settings config accounts-data))
@@ -116,23 +119,25 @@
    and chat accounts, you need to load the account again with
    `multiaccount-load-account` before using `multiaccount-store-derived`
    and the id of the account stored will have changed"
-  [account-id hashed-password callback]
+  [account-id key-uid hashed-password callback]
   (log/debug "[native-module] multiaccount-store-account")
   (when (status)
     (.multiAccountStoreAccount  ^js (status)
                                 (types/clj->json {:accountID account-id
-                                                  :password hashed-password})
+                                                  :keyUID    key-uid
+                                                  :password  hashed-password})
                                 callback)))
 
 (defn multiaccount-store-derived
   "NOTE: beware, the password has to be sha3 hashed"
-  [account-id paths hashed-password callback]
+  [account-id key-uid paths hashed-password callback]
   (log/debug "[native-module]  multiaccount-store-derived"
              "account-id" account-id)
   (.multiAccountStoreDerived  ^js (status)
                               (types/clj->json {:accountID account-id
-                                                :paths paths
-                                                :password hashed-password})
+                                                :keyUID    key-uid
+                                                :paths     paths
+                                                :password  hashed-password})
                               callback))
 
 (defn multiaccount-generate-and-derive-addresses

@@ -143,6 +143,7 @@
       (log/debug "[simulated kk] generate-and-load-key response" response)
       (status/multiaccount-store-derived
        id
+       key-uid
        [constants/path-wallet-root
         constants/path-eip1581
         constants/path-whisper
@@ -197,9 +198,8 @@
     path))
 
 (defn export-key [{:keys [pin on-success on-failure]}]
-  (let [wallet-root-address (get-in
-                             @re-frame.db/app-db
-                             [:multiaccount :wallet-root-address])
+  (let [{:keys [key-uid wallet-root-address]}
+        (get @re-frame.db/app-db :multiaccount)
         accounts            (get @re-frame.db/app-db :multiaccount/accounts)
         hashed-password     (ethereum/sha3 pin)
         path-num            (inc (get-in @re-frame.db/app-db [:multiaccount :latest-derived-path]))
@@ -220,6 +220,7 @@
                   (re-frame/dispatch [::new-account-error :account-error (i18n/label :t/account-exists-title)])
                   (status/multiaccount-store-derived
                    id
+                   key-uid
                    [path]
                    hashed-password
                    (fn [result]
