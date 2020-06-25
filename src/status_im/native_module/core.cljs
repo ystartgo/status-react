@@ -215,7 +215,7 @@
 (defn sign-message
   "NOTE: beware, the password in rpcParams has to be sha3 hashed"
   [rpcParams callback]
-  (log/debug "[native-module] sign-message")
+  (log/debug "[native-module] sign-message" rpcParams)
   (.signMessage ^js (status) rpcParams callback))
 
 (defn send-transaction

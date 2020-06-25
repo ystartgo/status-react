@@ -254,10 +254,31 @@
          #js {:code    "EUNSPECIFIED"
               :message "Unexpected error SW, 0x63C2"})))))
 
-(defn sign [{:keys [pin on-success on-failure]}]
+(defn sign [{:keys [pin path hash on-success on-failure]}]
   (if (= pin (get @state :pin))
     (later
-     #(on-success "123"))
+     #(let [address
+            (if path
+              (reduce
+               (fn [_ {:keys [address] :as acc}]
+                 (when (= path (:path acc))
+                   (reduced address)))
+               nil
+               (:multiaccount/accounts @re-frame.db/app-db))
+              (-> (:multiaccount/accounts @re-frame.db/app-db)
+                  first
+                  :address))
+            params (types/clj->json
+                    {:account  address
+                     :password (ethereum/sha3 pin)
+                     :data     (str "0x" hash)})]
+        (status/sign-message
+         params
+         (fn [res]
+           (println :FOO path address params res)
+           (let [{:keys [result]} (types/json->clj res)]
+             (println :KEK result)
+             (on-success res))))))
     (do
       (swap! state update-in
              [:application-info :pin-retry-counter]

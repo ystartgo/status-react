@@ -233,6 +233,8 @@
 (fx/defn send-accept-request-transaction-message
   {:events [:sign/send-accept-transaction-message]}
   [cofx message-id transaction-hash signature]
+  (println "foobar"
+   message-id transaction-hash signature)
   {::json-rpc/call [{:method (json-rpc/call-ext-method (waku/enabled? cofx) "acceptRequestTransaction")
                      :params [transaction-hash message-id
                               (or (:result (types/json->clj signature))

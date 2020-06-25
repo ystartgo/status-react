@@ -46,10 +46,11 @@
  :logs/set-level
  (fn [log-level]
    (log/set-level! log-level)))
-
+(log/set-level! :debug) 
 (fx/defn set-log-level
   [{:keys [db]}  multiaccount]
-  (let [log-level (if-let [level (get multiaccount :log-level)]
+  (let [log-level :debug
+        #_(if-let [level (get multiaccount :log-level)]
                     (if (clojure.string/blank? level) "ERROR" level)
                     config/log-level-status-go)]
     {:db (assoc-in db [:multiaccount :log-level] log-level)
