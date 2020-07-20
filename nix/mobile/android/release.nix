@@ -144,6 +144,7 @@ in stdenv.mkDerivation rec {
     ${adhocEnvVars} ${pkgs.gradle}/bin/gradle \
       ${toString gradleOpts} \
       --offline --stacktrace \
+      -Dorg.gradle.daemon=false \
       -Dmaven.repo.local='${deps.gradle}' \
       -PversionCode=${toString buildNumber} \
       assemble${gradleBuildType} \
