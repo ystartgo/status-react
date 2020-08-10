@@ -72,10 +72,12 @@
 
 (fx/defn switch-webview-debug
   {:events [:multiaccounts.ui/switch-webview-debug]}
-  [{:keys [db]} value]
-  ;; TODO: Turn offf on logout
-  {:db                     (assoc-in db [:multiaccount :webview-debug] value)
-   ::webview-debug-changed value})
+  [{:keys [db] :as cofx} value]
+  (fx/merge cofx
+            {::webview-debug-changed value}
+            (multiaccounts.update/multiaccount-update
+             :webview-debug (boolean value)
+             {})))
 
 (fx/defn switch-chaos-mode
   [{:keys [db] :as cofx} chaos-mode?]

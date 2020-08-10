@@ -6,15 +6,17 @@
             [status-im.native-module.core :as status]
             [status-im.transport.core :as transport]
             [status-im.utils.fx :as fx]
+            [status-im.multiaccounts.core :as multiaccounts]
             [status-im.utils.keychain.core :as keychain]))
 
 (fx/defn logout-method
   [{:keys [db] :as cofx} {:keys [auth-method logout?]}]
   (let [key-uid (get-in db [:multiaccount :key-uid])]
     (fx/merge cofx
-              {::logout                      nil
-               :keychain/clear-user-password key-uid
-               ::init/open-multiaccounts     #(re-frame/dispatch [::init/initialize-multiaccounts % {:logout? logout?}])}
+              {::logout                              nil
+               ::multiaccounts/webview-debug-changed false
+               :keychain/clear-user-password         key-uid
+               ::init/open-multiaccounts             #(re-frame/dispatch [::init/initialize-multiaccounts % {:logout? logout?}])}
               (keychain/save-auth-method key-uid auth-method)
               (transport/stop-whisper)
               (chaos-mode/stop-checking)
