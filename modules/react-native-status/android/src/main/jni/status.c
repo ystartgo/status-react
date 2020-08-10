@@ -1,11 +1,11 @@
 #include <jni.h>
 #include <string.h>
-#include "nimbase.h"
 #include "nim_status.h"
 
 static JavaVM* javaVM;
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* vm, void* reserved) {
   javaVM = vm;
+  NimMain();
   return  JNI_VERSION_1_6;
 }
 
