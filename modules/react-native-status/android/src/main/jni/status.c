@@ -1,4 +1,5 @@
 #include <jni.h>
+#include <string.h>
 #include "nimbase.h"
 #include "nim_status.h"
 
@@ -122,9 +123,9 @@ jstring Java_im_status_NimStatus_addPeer(JNIEnv* env, jobject thiz, jstring jpee
   return (*env)->NewStringUTF(env, result);
 }
 
-static jobject statusModule = null;
+static jobject statusModule = NULL;
 
-void signalCallback(const char * msg) {
+void signalCallback(char * msg) {
   JNIEnv *env;
   jint res = (*javaVM)->GetEnv(javaVM, (void**)&env, JNI_VERSION_1_6);
   if (res != JNI_OK) {
@@ -147,7 +148,7 @@ void signalCallback(const char * msg) {
 
 void Java_im_status_NimStatus_setSignalEventCallback(JNIEnv* env, 
     jobject thiz, jobject jStatusModule) {
-  if (statusModule == null) {
+  if (statusModule == NULL) {
     statusModule = (*env)->NewGlobalRef(env, jStatusModule);
   }
   setSignalEventCallback(&signalCallback);
@@ -160,7 +161,7 @@ jstring Java_im_status_NimStatus_sendTransaction(JNIEnv* env, jobject thiz, jstr
   const char * result = sendTransaction(jsonArgs, password);
 
   (*env)->ReleaseStringUTFChars(env, jjsonArgs, jsonArgs);
-  (*env)->ReleaseStringUTFChars(env, jPassword, password);
+  (*env)->ReleaseStringUTFChars(env, jpassword, password);
 
   return (*env)->NewStringUTF(env, result);
 }
@@ -331,7 +332,7 @@ jstring Java_im_status_NimStatus_loginWithKeycard(JNIEnv* env, jobject thiz, jst
   const char * password = (*env)->GetStringUTFChars(env, jpassword, 0);
   const char * keyHex = (*env)->GetStringUTFChars(env, jkeyHex, 0);
 
-  const char * result = loginWithKeycard(configJSON);
+  const char * result = loginWithKeycard(accountData, password, keyHex);
 
   (*env)->ReleaseStringUTFChars(env, jaccountData, accountData);
   (*env)->ReleaseStringUTFChars(env, jpassword, password);
@@ -358,7 +359,7 @@ jstring Java_im_status_NimStatus_writeHeapProfile(JNIEnv* env, jobject thiz, jst
   return (*env)->NewStringUTF(env, result);
 }
 
-jstring Java_im_status_NimStatus_importOnboardingAccount(JNIEnv* env, jobject thiz, jstring id, jstring password) {
+jstring Java_im_status_NimStatus_importOnboardingAccount(JNIEnv* env, jobject thiz, jstring jid, jstring jpassword) {
   const char * id = (*env)->GetStringUTFChars(env, jid, 0);
   const char * password = (*env)->GetStringUTFChars(env, jpassword, 0);
 
@@ -462,7 +463,7 @@ jstring Java_im_status_NimStatus_sendTransactionWithSignature(JNIEnv* env, jobje
   const char * txtArgsJSON = (*env)->GetStringUTFChars(env, jtxtArgsJSON, 0);
   const char * sigString = (*env)->GetStringUTFChars(env, jsigString, 0);
 
-  const char * result = sendTransactionWithSignature(env, txtArgsJSON, sigString);
+  const char * result = sendTransactionWithSignature(txtArgsJSON, sigString);
 
   (*env)->ReleaseStringUTFChars(env, jtxtArgsJSON, txtArgsJSON);
   (*env)->ReleaseStringUTFChars(env, jsigString, sigString);

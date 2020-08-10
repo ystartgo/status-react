@@ -31,7 +31,6 @@ import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 
-import im.status.SignalHandler;
 import im.status.NimStatus;
 
 import org.json.JSONException;
@@ -59,7 +58,7 @@ import javax.annotation.Nullable;
 
 import android.app.Service;
 
-class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventListener, SignalHandler {
+class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventListener {
 
     private static final String TAG = "StatusModule";
     private static final String logsZipFileName = "Status-debug-logs.zip";
@@ -1124,7 +1123,7 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
     @ReactMethod
     public void connectionChange(final String type, final boolean isExpensive) {
         Log.d(TAG, "ConnectionChange: " + type + ", is expensive " + isExpensive);
-        nimStatus.connectionChange(type, isExpensive ? 1 : 0);
+        nimStatus.connectionChange(type, isExpensive ? "1" : "0");
     }
 
     @ReactMethod
@@ -1227,7 +1226,7 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                String res = nimStatus.chaosModeUpdate(on);
+                String res = nimStatus.chaosModeUpdate(on ? 1 : 0);
 
                 callback.invoke(res);
             }

@@ -1,12 +1,12 @@
-package im.status.NimStatus;
+package im.status;
 
 
 
 
 
-class NimStatus {
+public class NimStatus {
 
-  NimStatus() {
+  public NimStatus() {
     System.loadLibrary("nim_status");
 
   }
@@ -24,7 +24,7 @@ class NimStatus {
   public native String callRPC(String inputJSON);
   public native String callPrivateRPC(String inputJSON);
   public native String addPeer(String peer);
-  public native void setSignalEventCallback(Object* obj);
+  public native void setSignalEventCallback(Object obj);
   public native String sendTransaction(String jsonArgs, String password);
   public native String generateAlias(String pk);
   public native String identicon(String pk);
