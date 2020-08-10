@@ -6,6 +6,12 @@ package im.status.NimStatus;
 
 class NimStatus {
 
+  NimStatus() {
+    System.loadLibrary("nim_status");
+
+  }
+  
+
   public native String hashMessage(String message);
   public native String initKeystore(String keydir);
   public native String openAccounts(String datadir);
@@ -18,10 +24,10 @@ class NimStatus {
   public native String callRPC(String inputJSON);
   public native String callPrivateRPC(String inputJSON);
   public native String addPeer(String peer);
-  public native void setSignalEventCallback(SignalCallback callback);
+  public native void setSignalEventCallback(Object* obj);
   public native String sendTransaction(String jsonArgs, String password);
-  public native String generateAlias(GoString pk);
-  public native String identicon(GoString pk);
+  public native String generateAlias(String pk);
+  public native String identicon(String pk);
   public native String login(String accountData, String password);
   public native String logout();
   public native String verifyAccountPassword(String keyStoreDir, String address, String password);
