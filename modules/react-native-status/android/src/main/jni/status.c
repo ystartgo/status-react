@@ -176,6 +176,9 @@ jstring Java_im_status_NimStatus_generateAlias(JNIEnv* env, jobject thiz, jstrin
 }
 
 jstring Java_im_status_NimStatus_identicon(JNIEnv* env, jobject thiz, jstring jpublicKey) {
+  if (jpublicKey == NULL) {
+    return (*env)->NewStringUTF(env, "");
+  }
   const char * publicKey = (*env)->GetStringUTFChars(env, jpublicKey, 0);
   struct GoString goString = {publicKey, strlen(publicKey)};
   const char * result = identicon(goString);
