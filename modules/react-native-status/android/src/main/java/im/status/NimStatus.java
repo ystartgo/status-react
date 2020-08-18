@@ -7,11 +7,9 @@ package im.status;
 public class NimStatus {
 
   public NimStatus() {
-    System.loadLibrary("nim_status");
 
   }
   
-
   public native String hashMessage(String message);
   public native String initKeystore(String keydir);
   public native String openAccounts(String datadir);

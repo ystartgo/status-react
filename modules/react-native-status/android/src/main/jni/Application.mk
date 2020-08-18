@@ -1,2 +1,2 @@
-APP_ABI := all
-include $(PREBUILT_STATIC_LIBRARY)
+APP_ABI := x86
+APP_PLATFORM := android-23

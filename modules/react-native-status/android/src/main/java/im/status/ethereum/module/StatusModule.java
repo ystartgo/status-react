@@ -80,6 +80,10 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
         nimStatus.setSignalEventCallback(this);
     }
 
+    static {
+      System.loadLibrary("status_wrapper");
+    }
+
     @Override
     public String getName() {
         return "Status";
