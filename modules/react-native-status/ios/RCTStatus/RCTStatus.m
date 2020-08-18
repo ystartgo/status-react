@@ -693,6 +693,9 @@ RCT_EXPORT_METHOD(generateAliasAsync:(NSString *)publicKey
 }
 
 RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(identicon:(NSString *)publicKey) {
+  if (publicKey == NULL) {
+    return toObjCStr("");
+  }
   const char * publicKeyStr = fromObjCStr(publicKey);
   struct GoString goString = {publicKeyStr, strlen(publicKeyStr)};
   return toObjCStr(identicon(goString));
