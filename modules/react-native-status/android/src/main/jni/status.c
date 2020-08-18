@@ -138,7 +138,7 @@ void signalCallback(char * msg) {
 
   jmethodID handleSignalMethodId = (*env)->GetMethodID(env, 
       (*env)->GetObjectClass(env, statusModule), 
-      "handleSignal", "(Ljava/lang/String;)");
+      "handleSignal", "(Ljava/lang/String;)V");
   jstring jsonEventStr = (*env)->NewStringUTF(env, msg);
   (*env)->CallVoidMethod(env, statusModule, handleSignalMethodId, jsonEventStr);
   (*env)->DeleteLocalRef(env, jsonEventStr);
