@@ -332,12 +332,10 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
 
     @ReactMethod
     public void saveAccountAndLogin(final String multiaccountData, final String password, final String settings, final String config, final String accountsData) {
-<<<<<<< HEAD
         try {
             Log.d(TAG, "saveAccountAndLogin");
             String finalConfig = prepareDirAndUpdateConfig(config, this.getKeyUID(multiaccountData));
-            String finalConfig = prepareDirAndUpdateConfig(config);
-            String result = NimStatus.saveAccountAndLogin(multiaccountData, password, settings, finalConfig, accountsData);
+            String result = nimStatus.saveAccountAndLogin(multiaccountData, password, settings, finalConfig, accountsData);
             if (result.startsWith("{\"error\":\"\"")) {
                 Log.d(TAG, "saveAccountAndLogin result: " + result);
                 Log.d(TAG, "Geth node started");
@@ -346,26 +344,15 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
             }
         } catch (JSONException e) {
             Log.e(TAG, "JSON conversion failed: " + e.getMessage());
-=======
-        Log.d(TAG, "saveAccountAndLogin");
-        String finalConfig = prepareDirAndUpdateConfig(config);
-        String result = nimStatus.saveAccountAndLogin(multiaccountData, password, settings, finalConfig, accountsData);
-        if (result.startsWith("{\"error\":\"\"")) {
-            Log.d(TAG, "saveAccountAndLogin result: " + result);
-            Log.d(TAG, "Geth node started");
-        } else {
-            Log.e(TAG, "saveAccountAndLogin failed: " + result);
->>>>>>> e27109126... Updates to JNI
         }
     }
 
     @ReactMethod
     public void saveAccountAndLoginWithKeycard(final String multiaccountData, final String password, final String settings, final String config, final String accountsData, final String chatKey) {
-<<<<<<< HEAD
         try {
           Log.d(TAG, "saveAccountAndLoginWithKeycard");
           String finalConfig = prepareDirAndUpdateConfig(config, this.getKeyUID(multiaccountData));
-          String result = NimStatus.saveAccountAndLoginWithKeycard(multiaccountData, password, settings, finalConfig, accountsData, chatKey);
+          String result = nimStatus.saveAccountAndLoginWithKeycard(multiaccountData, password, settings, finalConfig, accountsData, chatKey);
           if (result.startsWith("{\"error\":\"\"")) {
               Log.d(TAG, "saveAccountAndLoginWithKeycard result: " + result);
               Log.d(TAG, "Geth node started");
@@ -374,33 +361,19 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
           }
         } catch (JSONException e) {
             Log.e(TAG, "JSON conversion failed: " + e.getMessage());
+        }
     }
 
     private String getKeyUID(final String json) throws JSONException {
         final JSONObject jsonObj = new JSONObject(json);
         return jsonObj.getString("key-uid");
-=======
-        Log.d(TAG, "saveAccountAndLoginWithKeycard");
-        String finalConfig = prepareDirAndUpdateConfig(config);
-        String result = nimStatus.saveAccountAndLoginWithKeycard(multiaccountData, password, settings, finalConfig, accountsData, chatKey);
-        if (result.startsWith("{\"error\":\"\"")) {
-            Log.d(TAG, "saveAccountAndLoginWithKeycard result: " + result);
-            Log.d(TAG, "Geth node started");
-        } else {
-            Log.e(TAG, "saveAccountAndLoginWithKeycard failed: " + result);
-        }
->>>>>>> e27109126... Updates to JNI
     }
 
     @ReactMethod
     public void login(final String accountData, final String password) {
         Log.d(TAG, "login");
-<<<<<<< HEAD
         this.migrateKeyStoreDir(accountData, password);
-        String result = NimStatus.login(accountData, password);
-=======
         String result = nimStatus.login(accountData, password);
->>>>>>> e27109126... Updates to JNI
         if (result.startsWith("{\"error\":\"\"")) {
             Log.d(TAG, "Login result: " + result);
         } else {
@@ -481,12 +454,8 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
         Runnable r = new Runnable() {
             @Override
             public void run() {
-<<<<<<< HEAD
-                NimStatus.initKeystore(keydir);
-                callback.invoke(true);
-=======
                 nimStatus.initKeystore(keydir);
->>>>>>> e27109126... Updates to JNI
+                callback.invoke(true);
             }
         };
 
@@ -557,8 +526,8 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
             File keydirFile = new File(keydir);
             if(!keydirFile.exists() || keydirFile.list().length == 0) {
                 Log.d(TAG, "migrateKeyStoreDir");
-                Statusgo.migrateKeyStoreDir(accountData, password, commonKeydir, keydir);
-                Statusgo.initKeystore(keydir);
+                nimStatus.migrateKeyStoreDir(accountData, password, commonKeydir, keydir);
+                nimStatus.initKeystore(keydir);
             }
         } catch (JSONException e) {
             Log.e(TAG, "JSON conversion failed: " + e.getMessage());
@@ -1139,13 +1108,13 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
     @ReactMethod
     public void stopWallet() {
         Log.d(TAG, "StopWallet");
-        Statusgo.stopWallet();
+        nimStatus.stopWallet();
     }
 
     @ReactMethod
     public void startWallet() {
         Log.d(TAG, "StartWallet");
-        Statusgo.startWallet();
+        nimStatus.startWallet();
     }
 
     @ReactMethod
@@ -1251,7 +1220,7 @@ class StatusModule extends ReactContextBaseJavaModule implements LifecycleEventL
         Runnable r = new Runnable() {
             @Override
             public void run() {
-                String res = Statusgo.deleteMultiaccount(keyUID, keyStoreDir);
+                String res = nimStatus.deleteMultiaccount(keyUID, keyStoreDir);
 
                 callback.invoke(res);
             }

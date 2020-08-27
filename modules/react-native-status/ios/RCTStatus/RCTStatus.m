@@ -237,7 +237,7 @@ RCT_EXPORT_METHOD(deleteMultiaccount:(NSString *)keyUID
     NSLog(@"MultiAccountImportPrivateKey() method called");
 #endif
     NSURL *multiaccountKeystoreDir = [self getKeyStoreDir:keyUID];
-    NSString *result = StatusgoDeleteMultiaccount(keyUID, multiaccountKeystoreDir.path);
+    NSString *result = toObjCStr(deleteMultiaccount(fromObjCStr(keyUID), fromObjCStr(multiaccountKeystoreDir.path)));
     callback(@[result]);
 }
 
@@ -485,10 +485,11 @@ RCT_EXPORT_METHOD(saveAccountAndLoginWithKeycard:(NSString *)multiaccountData
     
     NSArray *keys = [fileManager contentsOfDirectoryAtPath:multiaccountKeystoreDir.path error:nil];
     if (keys.count == 0) {
-        NSString *migrationResult = StatusgoMigrateKeyStoreDir(accountData, password, oldKeystoreDir.path, multiaccountKeystoreDir.path);
+        NSString *migrationResult = toObjCStr(migrateKeyStoreDir(fromObjCStr(accountData), fromObjCStr(password), 
+                  fromObjCStr(oldKeystoreDir.path), fromObjCStr(multiaccountKeystoreDir.path));
         NSLog(@"keystore migration result %@", migrationResult);
         
-        NSString *initKeystoreResult = StatusgoInitKeystore(multiaccountKeystoreDir.path);
+        NSString *initKeystoreResult = toObjCStr(initKeystore(toObjCStr(multiaccountKeystoreDir.path)));
         NSLog(@"InitKeyStore result %@", initKeystoreResult);
     }
 }
@@ -768,14 +769,14 @@ RCT_EXPORT_METHOD(stopWallet) {
 #if DEBUG
     NSLog(@"StopWallet() method called");
 #endif
-    StatusgoStopWallet();
+    stopWallet();
 }
 
 RCT_EXPORT_METHOD(startWallet) {
 #if DEBUG
     NSLog(@"StartWallet() method called");
 #endif
-    StatusgoStartWallet();
+    startWallet();
 }
 
 RCT_EXPORT_METHOD(setBlankPreviewFlag:(BOOL *)newValue)
