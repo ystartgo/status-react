@@ -7,9 +7,9 @@ let
   inherit (stdenv.lib) optional optionalString strings;
 in buildGoPackage rec {
   pname = "gomobile";
-  version = "20200329-${strings.substring 0 7 rev}";
-  rev = "4c31acba000778d337c0e4f32091cc923b3363d2";
-  sha256 = "0k42pn6fq886k9hn85wbgg4h4y1myj7niw0746sn50zfbrmy3s2c";
+  version = "20200801-${strings.substring 0 7 rev}";
+  rev = "973feb4309de5c3aad0553fc987d76abf1fa58f7";
+  sha256 = "0jwz7jq1cqp9x6b9kpfrmw84sg7dg5v4xaa8zdbgq14gskmjx72d";
 
   goPackagePath = "golang.org/x/mobile";
   subPackages = [ "bind" "cmd/gobind" "cmd/gomobile" ];
