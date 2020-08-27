@@ -48,8 +48,8 @@ let
       shellHook = ''
         export STATUS_GO_ANDROID_LIBDIR="DUMMY"
         export STATUS_NIX_MAVEN_REPO="${pkgs.deps.gradle}"
-        export ANDROID_SDK_ROOT="${pkgs.androidPkgs}"
-        export ANDROID_NDK_ROOT="${pkgs.androidPkgs}/ndk-bundle"
+        export ANDROID_SDK_ROOT="${pkgs.androidPkgs}/libexec/android-sdk"
+        export ANDROID_NDK_ROOT="${pkgs.androidPkgs}/libexec/android-sdk/ndk-bundle"
       '';
     };
 

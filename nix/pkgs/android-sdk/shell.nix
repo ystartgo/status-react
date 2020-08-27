@@ -7,9 +7,9 @@ in
     shellHook = ''
       export JAVA_HOME="${openjdk}"
 
-      export ANDROID_HOME="${licensedPkgs}"
-      export ANDROID_SDK_ROOT="${licensedPkgs}"
-      export ANDROID_NDK_ROOT="${licensedPkgs}/ndk-bundle"
+      export ANDROID_HOME="${licensedPkgs}/libexec/android-sdk"
+      export ANDROID_SDK_ROOT="${licensedPkgs}/libexec/android-sdk"
+      export ANDROID_NDK_ROOT="${licensedPkgs}/libexec/android-sdk/ndk-bundle"
 
       export PATH="$ANDROID_HOME/bin:$PATH"
       export PATH="$ANDROID_NDK_ROOT:$PATH"

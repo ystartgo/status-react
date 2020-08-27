@@ -8,7 +8,6 @@
 let
   pkgs = callPackage ./pkgs.nix { };
   shell = callPackage ./shell.nix { };
-  licensedPkgs = callPackage ./licensed.nix { };
 in {
-  inherit pkgs licensedPkgs shell;
+  inherit pkgs shell;
 }

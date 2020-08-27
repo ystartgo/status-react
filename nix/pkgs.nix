@@ -11,10 +11,10 @@ let
   # Our own nixpkgs fork with custom fixes
   nixpkgsSrc = fetchFromGitHub {
     name = "nixpkgs-source";
-    owner = "status-im";
+    owner = "numinit";
     repo = "nixpkgs";
-    rev = "3355743cfd8d89cfa8d3b8e6d40c48e62e72d36a";
-    sha256 = "1l7559m3xkzwkm202rkjq3a8cz52k7z9vxn9y2adc30cp197wc82";
+    rev = "1f930f80c1d407734b19dcf67d9e7d7fce8b985e";
+    sha256 = "1skhlnnnx5zj2apiiammzhgjdyg7g5wsafpq6xah9p017mv1kk46";
     # To get the compressed Nix sha256, use:
     # nix-prefetch-url --unpack https://github.com/${ORG}/nixpkgs/archive/${REV}.tar.gz
   };

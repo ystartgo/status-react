@@ -77,8 +77,8 @@ in stdenv.mkDerivation rec {
   ANDROID_ABI_INCLUDE = androidAbiInclude;
 
   # Android SDK/NDK for use by Gradle
-  ANDROID_SDK_ROOT = "${androidPkgs}";
-  ANDROID_NDK_ROOT = "${androidPkgs}/ndk-bundle";
+  ANDROID_SDK_ROOT = "${androidPkgs}/libexec/android-sdk";
+  ANDROID_NDK_ROOT = "${androidPkgs}/libexec/android-sdk/ndk-bundle";
 
   # Used by the Android Gradle build script in android/build.gradle
   STATUS_GO_ANDROID_LIBDIR = "${status-go}";

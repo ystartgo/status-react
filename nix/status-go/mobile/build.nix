@@ -49,8 +49,9 @@ in buildGo114Package {
     export NIX_GOWORKDIR=${NIX_GOWORKDIR}
 
   '' + optionalString (platform == "android") ''
-    export ANDROID_HOME=${androidPkgs}
-    export ANDROID_NDK_HOME=${androidPkgs}/ndk-bundle
+    export ANDROID_HOME=${androidPkgs}/libexec/android-sdk
+    export ANDROID_NDK_HOME=${androidPkgs}/libexec/android-sdk/ndk-bundle
+    echo "ANDROID_HOME: $ANDROID_HOME"
     export PATH="${makeBinPath [ openjdk ]}:$PATH"
   '';
 
