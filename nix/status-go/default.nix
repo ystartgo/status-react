@@ -34,11 +34,11 @@ let
   goBuildFlags = [ "-v" ];
 
 in rec {
+  shared = callPackage ./shared { };
+
   mobile = callPackage ./mobile {
     inherit meta source goBuildFlags goBuildLdFlags;
   };
-
-  nim = callPackage ./nim { };
 
   shell = mkShell {
     inputsFrom = [ mobile.android mobile.ios ];
