@@ -1,7 +1,20 @@
-{ callPackage }:
+{ callPackage
+, meta, source }:
 
 {
-  x86 = callPackage ./build.nix { platform = "android"; arch = "386"; };
-  armeabi = callPackage ./build.nix { platform = "androideabi"; arch = "arm"; };
-  arm64 = callPackage ./build.nix { platform = "android"; arch = "arm64"; };
+  x86 = callPackage ./build.nix {
+    inherit meta source;
+    platform = "android";
+    arch = "386";
+  };
+  armeabi = callPackage ./build.nix {
+    inherit meta source;
+    platform = "androideabi";
+    arch = "arm";
+  };
+  arm64 = callPackage ./build.nix {
+    inherit meta source;
+    platform = "android";
+    arch = "arm64";
+  };
 }

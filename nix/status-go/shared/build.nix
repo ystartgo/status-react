@@ -1,6 +1,8 @@
 { stdenv, lib, fetchFromGitHub, buildGoPackage
 # Dependencies
 , go, androidPkgs
+# metadata and status-go source
+, meta, source
 # build parameters
 , platform ? "android"
 , arch ? "386"
@@ -9,17 +11,10 @@
 let
   inherit (lib) attrNames getAttr strings concatStringsSep concatMapStrings;
 
-  owner = "status-im";
-  repo = "status-go";
-  rev = "1203ec3dbda9737b00cefdd5cd4a47bf755ceadc";
-  shortRev = strings.substring 0 7 rev;
-  sha256 = "05xc6x6b3h4fv8rj0hnlpai372vrqhv66nycj6nmlf70p3v3c4jr";
-  goPackagePath = "github.com/${owner}/${repo}";
-
   removeReferences = [ go ];
   removeExpr = refs: ''remove-references-to ${concatMapStrings (ref: " -t ${ref}") refs}'';
 
-  targetArchMap = {
+  targetArchMap = rec {
     "386" = "i686";
     "arm" = "armv7a";
     "arm64" = "aarch64";
@@ -34,16 +29,12 @@ let
   targetArch = getAttr arch targetArchMap;
   ldArch = getAttr arch ldArchMap;
 
-in buildGoPackage {
-  pname = repo;
-  version = "${shortRev}-${platform}-${arch}";
+in buildGoPackage rec {
+  pname = source.repo;
+  version = "${source.cleanVersion}-${source.shortRev}-${platform}-${arch}";
 
-  inherit goPackagePath;
-
-  src = fetchFromGitHub {
-    inherit rev owner repo sha256;
-    name = "${repo}-${shortRev}-source";
-  };
+  inherit meta;
+  inherit (source) src goPackagePath;
 
   nativeBuildInputs = [ go ];
 

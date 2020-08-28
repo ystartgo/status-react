@@ -34,7 +34,9 @@ let
   goBuildFlags = [ "-v" ];
 
 in rec {
-  shared = callPackage ./shared { };
+  shared = callPackage ./shared {
+    inherit meta source;
+  };
 
   mobile = callPackage ./mobile {
     inherit meta source goBuildFlags goBuildLdFlags;
