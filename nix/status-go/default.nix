@@ -38,6 +38,8 @@ in rec {
     inherit meta source goBuildFlags goBuildLdFlags;
   };
 
+  nim = callPackage ./nim { };
+
   shell = mkShell {
     inputsFrom = [ mobile.android mobile.ios ];
   };
