@@ -266,7 +266,7 @@
            [react/touchable-highlight {:on-press #(swap! collapsed? not)
                                        :style {:position :absolute  :bottom 0 :left 0 :right 0 :height 72}}
             [react/linear-gradient {:colors [(str colors/blue-light "00") colors/blue-light]
-                                    :start { :x 0 :y 0 } :end { :x 0 :y 0.9}}
+                                    :start {:x 0 :y 0} :end {:x 0 :y 0.9}}
              [react/view {:height 72 :align-self :center :justify-content :flex-end
                           :padding-bottom 10}
               [react/view (style/collapse-button)
