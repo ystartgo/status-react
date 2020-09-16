@@ -80,7 +80,8 @@
       (if (:wallet/recipient db)
         {:db (update db :wallet/recipient assoc :resolved-address address
                      :address address)
-         :dispatch [:wallet.recipient/focus-input]}
+         ;;android
+         :dispatch-later [{:ms 1000 :dispatch [:wallet.recipient/focus-input]}]}
         (if (:wallet/prepare-transaction db)
           {:db (update db :wallet/prepare-transaction assoc
                        :to address :to-name (find-address-name db address))}
