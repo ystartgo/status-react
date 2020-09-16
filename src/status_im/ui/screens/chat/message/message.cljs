@@ -263,15 +263,15 @@
          [message-timestamp message true])
        (when @collapsible?
          (if @collapsed?
-           [react/view {:position :absolute  :bottom 0 :left 0 :right 0 :height 44}
+           [react/touchable-highlight {:on-press #(swap! collapsed? not)
+                                       :style {:position :absolute  :bottom 0 :left 0 :right 0 :height 72}}
             [react/linear-gradient {:colors [(str colors/blue-light "00") colors/blue-light]
-                                    :start { :x 0 :y 0 } :end { :x 0 :y 1}}
-             [react/view {:height 44 :align-self :center :justify-content :flex-end
+                                    :start { :x 0 :y 0 } :end { :x 0 :y 0.9}}
+             [react/view {:height 72 :align-self :center :justify-content :flex-end
                           :padding-bottom 10}
-              [react/touchable-highlight {:on-press #(swap! collapsed? not)}
-               [react/view (style/collapse-button)
-                [vector-icons/icon :main-icons/dropdown
-                 {:color colors/white}]]]]]]
+              [react/view (style/collapse-button)
+               [vector-icons/icon :main-icons/dropdown
+                {:color colors/white}]]]]]
            [react/touchable-highlight {:on-press #(swap! collapsed? not)
                                        :style {:align-self :center :margin 5}}
             [react/view (style/collapse-button)
