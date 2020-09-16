@@ -136,8 +136,8 @@
      cnt
      (if (> cnt 0)
        [react/view
-        (for [{:keys [data]} txs]
-          [render-recent (first data)])]
+        (for [tx txs]
+          [render-recent tx])]
        [empty-items :main-icons/history (i18n/label :t/recent-empty)])]))
 
 (defn render-fav [{:keys [address name]}]

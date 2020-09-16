@@ -1465,7 +1465,8 @@
  (fn [[transactions] _]
    (->> transactions
         vals
-        (group-transactions-by-date)
+        (sort-by :timestamp >)
+        (remove #(= (:type %) :pending))
         (take 3))))
 
 (re-frame/reg-sub

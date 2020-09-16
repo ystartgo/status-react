@@ -4,6 +4,12 @@
 (defn sheet []
   {:flex 1})
 
+(defn acc-sheet []
+  {:background-color        colors/white
+   :border-top-right-radius 16
+   :border-top-left-radius  16
+   :padding-bottom          60})
+
 (defn header [small-screen?]
   {:flex-direction  :row
    :align-items     :center

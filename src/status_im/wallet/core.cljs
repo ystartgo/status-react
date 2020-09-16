@@ -428,7 +428,8 @@
                  :symbol symbol
                  :amount-text amount-text
                  :request? true
-                 :from-chat? true})}))
+                 :from-chat? true})
+     :dispatch [:navigate-to :prepare-send-transaction]}))
 
 (fx/defn sign-transaction-button-clicked-from-request
   {:events  [:wallet.ui/sign-transaction-button-clicked-from-request]}

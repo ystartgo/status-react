@@ -112,7 +112,7 @@
   (views/letsubs [window-height [:dimensions/window-height]
                   keyboard-height [:keyboard-height]]
     (let [small-screen? (< (- window-height keyboard-height) 450)]
-      [react/view {:style (styles/sheet)}
+      [react/view {:style (styles/acc-sheet)}
        [header {:small-screen? small-screen?
                 :label         :t/select-account}]
        [react/view {:flex-direction  :row :padding-horizontal 24 :align-items :center
